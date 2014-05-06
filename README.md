@@ -4,3 +4,4 @@ Current goals:
 - Find tools to use for verification
 - Finish first sections of report
 - Create step-by-step plan for verification
+- Sear hfoR dataset and research 3 coloured graphs
