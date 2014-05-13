@@ -12,18 +12,26 @@ import graph.Graph;
  */
 public class GraphGenerator {
 
-	private int order;
-	private double density;
-	private Graph graph;
+	private Graph[] graphs;
 	
-	public GraphGenerator(int o, double d) {
-		order = o;
-		density = d;
-		graph = null;
+	public GraphGenerator(int n) {
+		graphs = new Graph[n];
 	}
 	
-	public void generateGraph() {
-		graph = new Graph();
+	public void generateGraphs(int order) {
+		for(int i = 0; i < graphs.length; i++) {
+			graphs[i] = new Graph(order, i*0.5);
+		}
+	}
+	
+	public void generateGraphs(double density) {
+		for(int i = 0; i < graphs.length; i++) {
+			graphs[i] = new Graph(10+i, density);
+		}
+	}
+	
+	public Graph getGraph(int i) {
+		return graphs[i];
 	}
 	
 	/**

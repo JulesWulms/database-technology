@@ -10,19 +10,19 @@ package graph;
  */
 public class Edge {
 	
-	private int[] edge;
+	private String[] edge;
 	
-	public Edge(int vertex1, int vertex2) {
-		edge = new int[2];
+	public Edge(String vertex1, String vertex2) {
+		edge = new String[2];
 		edge[0] = vertex1;
 		edge[1] = vertex2;
 	}
 	
-	public int getVertex1() {
+	public String getVertex1() {
 		return edge[0];
 	}
 	
-	public int getVertex2() {
+	public String getVertex2() {
 		return edge[1];
 	}
 }
