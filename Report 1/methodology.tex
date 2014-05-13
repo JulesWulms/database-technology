@@ -1,5 +1,20 @@
 \section{Methodology}
-This section will elaborate on the steps we are going to take to verify the results in the paper.
+This section will elaborate on the steps we are going to take to verify the results in the paper.\\
+
+\noindent The steps we are going to take are as follows:
+
+\begin{itemize}
+	\item Generate graphs similar to the ones used in the paper.
+	\item Implement the proposed algorithms to create optimized SQL queries from the graphs.
+	\item Send query to SQL engine and measure the execution time
+\end{itemize}
+
+\noindent Figure \ref{fig:process} gives an overview of the process and how the results are passed. The generation and translation of graphs will be implemented in Java. The idea is to have a graph generator, which outputs the graph we want to solve. Specifically, we pass a list of graphs, which will be the graphs used for a single experiment, varying in graph order or density. \\
+
+The graph translation part takes the graphs as input and generates SQL queries for the graphs, according to the algorithms proposed in the paper. This part thus returns several SQL queries, in a text-file or on console. This is the biggest part of our assignment, so we want to work in parallel on the different algorithms. \\
+
+The queries we can pass to an SQL engine. We have chosen to use PostGreSQL, to stay close to the tools that were used in the paper. However, we no longer have access to the older version of PostGre that is used by the authors of the paper, so we choose to use a newer version, namely %TODO!!
+The newer version can be more optimized, so we have to take this into account when comparing results. Furthermore, we know that the authors used a Linux cluster of Itanium II, processors with 4GB of memory. We have no access to the cluster so we have to use our own machinesThe machine we will use also has 4GB of RAM, but we are unsure whether our setup, using an Intel Core i5 (2,53 GHz), can match the computational power of the cluster.
 
 \begin{figure}
 	\includegraphics{figures/process.pdf}
