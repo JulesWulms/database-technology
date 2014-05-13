@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+\ifx \showCODEN  \undefined \def \showCODEN #1{CODEN #1}  \fi
+\ifx \showISBN   \undefined \def \showISBN  #1{ISBN #1}   \fi
+\ifx \showISSN   \undefined \def \showISSN  #1{ISSN #1}   \fi
+\ifx \showLCCN   \undefined \def \showLCCN  #1{LCCN #1}   \fi
+\ifx \showPRICE  \undefined \def \showPRICE #1{#1}        \fi
+\ifx \showURL    \undefined \def \showURL {URL }          \fi
+\ifx \path       \undefined \input path.sty               \fi
+\ifx \ifshowURL \undefined
+     \newif \ifshowURL
+     \showURLtrue
+\fi
+
+\bibitem{paper}
+B.~J. Mcmahan, G.~Pan, P.~Porter, and M.~Y. Vardi.
+\newblock Projection pushing revisited.
+\newblock In {\em In Proc of EDBT’04}, pages 441--458, 2004.
+
+\end{thebibliography}
