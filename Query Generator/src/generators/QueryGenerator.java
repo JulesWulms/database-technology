@@ -125,17 +125,17 @@ public class QueryGenerator {
 	
 	private void generateStraightforwardQuery(int index, Graph graph) {
 		queries[index] = new Query();
-		// implement algorithm here
+		// TODO: implement algorithm here
 	}
 	
 	private void generatePushReorderQuery(int index, Graph graph) {
 		queries[index] = new Query();
-		// implement algorithm here
+		// TODO: implement algorithm here
 	}
 	
 	private void generateBucketElimQuery(int index, Graph graph) {
 		queries[index] = new Query();
-		// implement algorithm here
+		// TODO: implement algorithm here
 	}
 	
 	public String getQuery(int i) {
