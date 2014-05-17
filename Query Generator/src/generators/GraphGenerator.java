@@ -5,6 +5,7 @@
 package generators;
 
 import graph.Graph;
+import graph.Graph.GraphType;
 
 /**
  *
@@ -20,7 +21,7 @@ public class GraphGenerator {
 	
 	public void generateGraphs(int order) {
 		for(int i = 0; i < graphs.length; i++) {
-			graphs[i] = new Graph(order, i*0.5);
+			graphs[i] = new Graph(order, (i+1)*0.5);
 		}
 	}
 	
@@ -28,6 +29,39 @@ public class GraphGenerator {
 		for(int i = 0; i < graphs.length; i++) {
 			graphs[i] = new Graph(10+i, density);
 		}
+	}
+	
+	public void generateGraphs(GraphType type) {
+		switch(type) {
+			case augmented:
+				generateAugmentedGraphs();
+				break;
+			case ladder:
+				generateLadderGraphs();
+				break;
+			case augladder:
+				generateAugLadderGraphs();
+				break;
+			case circaugladder:
+				generateCircAugLadderGraphs();
+				break;
+		}
+	}
+	
+	private void generateAugmentedGraphs() {
+		// TODO: not implemented yet
+	}
+	
+	private void generateLadderGraphs() {
+		// TODO: not implemented yet
+	}
+	
+	private void generateAugLadderGraphs() {
+		// TODO: not implemented yet
+	}
+	
+	private void generateCircAugLadderGraphs() {
+		// TODO: not implemented yet
 	}
 	
 	public Graph getGraph(int i) {
@@ -38,6 +72,13 @@ public class GraphGenerator {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		// TODO code application logic here
+		int amount = 2;
+		int order = 15;
+		GraphGenerator graphGen = new GraphGenerator(amount);
+		graphGen.generateGraphs(order);
+		
+		for(int i = 0; i < amount; i++) {
+			System.out.println(graphGen.getGraph(i).toString());
+		}
 	}
 }

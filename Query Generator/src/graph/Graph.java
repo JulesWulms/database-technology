@@ -7,17 +7,29 @@ package graph;
 import java.util.Random;
 
 /**
- *
+ * Immutable Graph object
+ * 
  * @author s105301
  */
-public class Graph {
+public final class Graph {
 	
-	private String[] vertices;
-	private Edge[] edges;
+	public enum GraphType {augmented, ladder, augladder, circaugladder};
+	
+	private final String[] vertices;
+	private final Edge[] edges;
+	
+	private final int[] min_occur;
 	
 	public Graph(int order, double density) {
+		int size = (int) (order*density);
 		vertices = new String[order];
-		edges = new Edge[(int) (order/density)];
+		edges = new Edge[size];
+		
+		min_occur = new int[order];
+		for(int i = 0; i < order; i++) {
+			min_occur[i] = size;
+		}
+		
 		generateGraph();
 	}
 	
@@ -34,8 +46,16 @@ public class Graph {
 				j = r.nextInt(vertices.length);
 				k = r.nextInt(vertices.length);
 			} while(j == k || edgeExists(i,j,k)); // no selfloops and no double edges
+			// set the edge
 			e = new Edge(""+j, ""+k);
 			edges[i] = e;
+			// remember first/lowest occurrence
+			if(min_occur[j] > i) {
+				min_occur[j] = i;
+			}
+			if(min_occur[k] > i) {
+				min_occur[k] = i;
+			}
 		}
 	}
 	
@@ -48,6 +68,41 @@ public class Graph {
 				result = true;
 			}
 			k++;
+		}
+		
+		return result;
+	}
+	
+	public int getOrder() {
+		return vertices.length;
+	}
+	
+	public int getSize() {
+		return edges.length;
+	}
+	
+	public String getVertex(int i) {
+		return vertices[i];
+	}
+	
+	public Edge getEdge(int i) {
+		return edges[i];
+	}
+	
+	public int minOccur(String vertex) {
+		return min_occur[Integer.parseInt(vertex)];
+	}
+	
+	@Override
+	public String toString() {
+		String result = "Vertices:\n";
+		for(int i = 0; i < vertices.length; i++) {
+			result += "Vertex "+ vertices[i] + "\n";
+		}
+		
+		result += "\n" + "Edges:\n";
+		for(int i = 0; i < edges.length; i++) {
+			result += edges[i].toString() + "\n";
 		}
 		
 		return result;

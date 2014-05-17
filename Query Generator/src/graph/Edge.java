@@ -5,12 +5,13 @@
 package graph;
 
 /**
- *
+ * Immutable Edge object
+ * 
  * @author s105301
  */
-public class Edge {
+public final class Edge {
 	
-	private String[] edge;
+	private final String[] edge;
 	
 	public Edge(String vertex1, String vertex2) {
 		edge = new String[2];
@@ -24,5 +25,10 @@ public class Edge {
 	
 	public String getVertex2() {
 		return edge[1];
+	}
+	
+	@Override
+	public String toString() {
+		return "Edge between " + getVertex1() + " and " + getVertex2();
 	}
 }
