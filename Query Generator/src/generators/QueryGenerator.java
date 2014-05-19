@@ -88,37 +88,37 @@ public class QueryGenerator {
 		for(int i = 0; i < graph.getSize(); i++) {
 			if(i< graph.getSize() - 1) {
 				queries[index].addWHERE("edge" + graph.getEdge(i).getVertex1() 
-											+ graph.getEdge(i).getVertex2()
-											+ "." + graph.getEdge(i).getVertex1()
-											+ " = edge"
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() 
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
-											+ "." + graph.getEdge(i).getVertex1()
-											+ " AND "
-											+ "edge" + graph.getEdge(i).getVertex1() 
-											+ graph.getEdge(i).getVertex2()
-											+ "." + graph.getEdge(i).getVertex2()
-											+ " = edge"
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() 
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
-											+ "." + graph.getEdge(i).getVertex2()
-											+ " AND ");
+                                    + graph.getEdge(i).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex1()
+                                    + " = edge"
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() 
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex1()
+                                    + " AND "
+                                    + "edge" + graph.getEdge(i).getVertex1() 
+                                    + graph.getEdge(i).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex2()
+                                    + " = edge"
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() 
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex2()
+                                    + " AND ");
 			} else {
 				queries[index].addWHERE("edge" + graph.getEdge(i).getVertex1() 
-											+ graph.getEdge(i).getVertex2()
-											+ "." + graph.getEdge(i).getVertex1()
-											+ " = edge"
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() 
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
-											+ "." + graph.getEdge(i).getVertex1()
-											+ " AND "
-											+ "edge" + graph.getEdge(i).getVertex1() 
-											+ graph.getEdge(i).getVertex2()
-											+ "." + graph.getEdge(i).getVertex2()
-											+ " = edge"
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() 
-											+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
-											+ "." + graph.getEdge(i).getVertex2());
+                                    + graph.getEdge(i).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex1()
+                                    + " = edge"
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() 
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex1()
+                                    + " AND "
+                                    + "edge" + graph.getEdge(i).getVertex1() 
+                                    + graph.getEdge(i).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex2()
+                                    + " = edge"
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() 
+                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
+                                    + "." + graph.getEdge(i).getVertex2());
 			}
 		}
 	}
