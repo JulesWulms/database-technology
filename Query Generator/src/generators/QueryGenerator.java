@@ -69,17 +69,17 @@ public class QueryGenerator {
 	private void generateNaiveQuery(int index, Graph graph) {
 		queries[index] = new Query();
 		// SELECT first vertex in first edge
-		queries[index].addSELECT("edge" + graph.getEdge(0).getVertex1()
+		queries[index].addSELECT("edge" + graph.getEdge(0).getVertex1() + "x"
 										+ graph.getEdge(0).getVertex2()
 										+ "." + graph.getEdge(0).getVertex1());
 		
 		// put all the tables in the FROM clause
 		for(int i = 0; i < graph.getSize(); i++) {
 			if(i< graph.getSize() - 1) {
-				queries[index].addFROM("edge" + graph.getEdge(i).getVertex1() 
+				queries[index].addFROM("edge" + graph.getEdge(i).getVertex1() + "x"
 											  + graph.getEdge(i).getVertex2() + ", ");
 			} else {
-				queries[index].addFROM("edge" + graph.getEdge(i).getVertex1() 
+				queries[index].addFROM("edge" + graph.getEdge(i).getVertex1() + "x"
 											  + graph.getEdge(i).getVertex2());
 			}
 		}
@@ -87,38 +87,38 @@ public class QueryGenerator {
 		// enforce equality of columns
 		for(int i = 0; i < graph.getSize(); i++) {
 			if(i< graph.getSize() - 1) {
-				queries[index].addWHERE("edge" + graph.getEdge(i).getVertex1() 
-                                    + graph.getEdge(i).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex1()
-                                    + " = edge"
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() 
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex1()
-                                    + " AND "
-                                    + "edge" + graph.getEdge(i).getVertex1() 
-                                    + graph.getEdge(i).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex2()
-                                    + " = edge"
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() 
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex2()
-                                    + " AND ");
+				queries[index].addWHERE("edge" + graph.getEdge(i).getVertex1() + "x"
+									+ graph.getEdge(i).getVertex2()
+									+ "." + graph.getEdge(i).getVertex1()
+									+ " = edge"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() + "x"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
+									+ "." + graph.getEdge(i).getVertex1()
+									+ " AND "
+									+ "edge" + graph.getEdge(i).getVertex1() + "x"
+									+ graph.getEdge(i).getVertex2()
+									+ "." + graph.getEdge(i).getVertex2()
+									+ " = edge"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() + "x"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
+									+ "." + graph.getEdge(i).getVertex2()
+									+ " AND ");
 			} else {
-				queries[index].addWHERE("edge" + graph.getEdge(i).getVertex1() 
-                                    + graph.getEdge(i).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex1()
-                                    + " = edge"
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() 
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex1()
-                                    + " AND "
-                                    + "edge" + graph.getEdge(i).getVertex1() 
-                                    + graph.getEdge(i).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex2()
-                                    + " = edge"
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() 
-                                    + graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
-                                    + "." + graph.getEdge(i).getVertex2());
+				queries[index].addWHERE("edge" + graph.getEdge(i).getVertex1() + "x"
+									+ graph.getEdge(i).getVertex2()
+									+ "." + graph.getEdge(i).getVertex1()
+									+ " = edge"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex1() + "x"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex1())).getVertex2()
+									+ "." + graph.getEdge(i).getVertex1()
+									+ " AND "
+									+ "edge" + graph.getEdge(i).getVertex1() + "x"
+									+ graph.getEdge(i).getVertex2()
+									+ "." + graph.getEdge(i).getVertex2()
+									+ " = edge"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex1() + "x"
+									+ graph.getEdge(graph.minOccur(graph.getEdge(i).getVertex2())).getVertex2()
+									+ "." + graph.getEdge(i).getVertex2());
 			}
 		}
 	}

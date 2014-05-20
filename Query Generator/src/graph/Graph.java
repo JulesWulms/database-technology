@@ -47,7 +47,11 @@ public final class Graph {
 				k = r.nextInt(vertices.length);
 			} while(j == k || edgeExists(i,j,k)); // no selfloops and no double edges
 			// set the edge
-			e = new Edge(""+j, ""+k);
+			if(j < k) { // sort edges in Edge representation from low to high
+				e = new Edge(""+j, ""+k);
+			} else {
+				e = new Edge(""+k, ""+j);
+			}
 			edges[i] = e;
 			// remember first/lowest occurrence
 			if(min_occur[j] > i) {
@@ -64,7 +68,9 @@ public final class Graph {
 		
 		int k = 0;
 		while(!result && k < bound) {
-			if(edges[k].getVertex1().equals(""+i) && edges[k].getVertex2().equals(""+j)) {
+			if(i < j && edges[k].getVertex1().equals(""+i) && edges[k].getVertex2().equals(""+j)) {
+				result = true;
+			} else if(edges[k].getVertex1().equals(""+j) && edges[k].getVertex2().equals(""+i)) {
 				result = true;
 			}
 			k++;
