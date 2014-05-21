@@ -1,0 +1,15 @@
+﻿SELECT edge1x2."1"
+FROM edge1x2, edge0x1, edge0x2, edge1x3, edge2x3, edge0x3
+WHERE edge0x1."0" = edge0x2."0"
+AND edge0x3."0" = edge0x1."0"
+AND edge0x3."0" = edge0x2."0"
+AND edge0x2."2" = edge1x2."2"
+AND edge2x3."2" = edge1x2."2"
+AND edge2x3."2" = edge0x2."2"
+AND edge1x3."1" = edge1x2."1"
+AND edge0x1."1" = edge1x2."1"
+AND edge0x1."1" = edge1x3."1"
+AND edge0x3."3" = edge1x3."3"
+AND edge1x3."3" = edge2x3."3"
+AND edge0x3."3" = edge2x3."3"
+
