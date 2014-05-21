@@ -4,10 +4,11 @@
  */
 package generators;
 
-import sqlquery.Config;
 import graph.Edge;
 import graph.Graph;
 import graph.Graph.GraphType;
+import java.util.ArrayList;
+import sqlquery.Config;
 import sqlquery.Query;
 
 /**
@@ -162,8 +163,64 @@ public class QueryGenerator {
     }
 
     private void generateStraightforwardQuery(int index, Graph graph) {
-        queries[index] = new Query();
         // TODO: implement algorithm here
+        queries[index] = new Query();
+        // SELECT first vertex in first edge
+        queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
+                + ".\"" + graph.getEdge(0).getVertex1() + "\"");
+
+        // add first FROM clause
+        queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)) + Config.NEWLINE);
+
+        //keep track of all edges you already have had
+        ArrayList<Edge> edges_handled = new ArrayList<Edge>();
+        edges_handled.add(graph.getEdge(0));
+
+        //for each edge add a JOIN claus
+        for (Edge e1 : graph.getEdges()) {
+            // skip the JOIN for the edge in the FROM clause
+            if (e1.equals(graph.getEdge(0))) {
+                continue;
+            }
+
+            // compute name for table of e
+            String e1_table = Config.getTableNameFromEdge(e1);
+            // add the JOIN keyword, (1=1) is added such that every condition can start with AND
+            queries[index].addFROM("JOIN " + e1_table + " ON (1=1)");
+
+            // duplicate list for itration and modification
+            ArrayList<Edge> edges_handled2 = (ArrayList<Edge>) edges_handled.clone();
+            // for each edge that was already handled and shares a vertex with e1, add the JOIN condition
+            for (Edge e2 : edges_handled2) {
+                //Compute name for table of e2
+                String e2_table = Config.getTableNameFromEdge(e2);
+                // first check if the first vertex of e1 is shared
+                if (e1.getVertex1() == e2.getVertex1() || e1.getVertex1() == e2.getVertex2()) {
+                    queries[index].addFROM(" AND " + e1_table
+                            + ".\"" + e1.getVertex1() + "\""
+                            + " = " + e2_table
+                            + ".\"" + e1.getVertex1() + "\""
+                    );
+                }
+                // then check if the second vertex of e1 is shared
+                if (e1.getVertex2() == e2.getVertex1() || e1.getVertex2() == e2.getVertex2()) {
+                    queries[index].addFROM(" AND " + e1_table
+                            + ".\"" + e1.getVertex2() + "\""
+                            + " = " + e2_table
+                            + ".\"" + e1.getVertex2() + "\""
+                    );
+                }
+                
+                // add edge to edges_handled
+                edges_handled.add(e2);
+            }
+            // add new line for readibility
+            queries[index].addFROM(Config.NEWLINE);
+        }
+        
+        // add (1=1) to empty where clause
+        queries[index].addWHERE("(1=1)");
+
     }
 
     private void generatePushReorderQuery(int index, Graph graph) {
@@ -189,7 +246,8 @@ public class QueryGenerator {
         double density = 1.0d;
         QueryGenerator queryGen = new QueryGenerator(amount);
 
-        queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
+        //queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
+        queryGen.generateQueries(order, /*density,*/ TranslationType.straightforward);
         for (int i = 0; i < amount; i++) {
             System.out.println(queryGen.getQuery(i) + Config.NEWLINE);
         }
