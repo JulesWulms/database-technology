@@ -7,23 +7,23 @@ package graph;
 /**
  * Immutable Edge object
  * 
- * @author s105301
+ * @author s105301, Colin
  */
 public final class Edge {
 	
-	private final String[] edge;
+	private final int[] edge;
 	
-	public Edge(String vertex1, String vertex2) {
-		edge = new String[2];
+	public Edge(int vertex1, int vertex2) {
+		edge = new int[2];
 		edge[0] = vertex1;
 		edge[1] = vertex2;
 	}
 	
-	public String getVertex1() {
+	public int getVertex1() {
 		return edge[0];
 	}
 	
-	public String getVertex2() {
+	public int getVertex2() {
 		return edge[1];
 	}
 	

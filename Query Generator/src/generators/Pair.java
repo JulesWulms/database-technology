@@ -1,4 +1,11 @@
 package generators;
+
+/**
+ * 
+ * @author Colin
+ * @param <A> The type of the first element
+ * @param <B> The type of the second element
+ */
 public class Pair<A, B> {
     private A first;
     private B second;

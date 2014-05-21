@@ -1,9 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package generators;
+
+import sqlquery.Config;
 
 /**
  * Class for generating the tables needed in the db
@@ -11,16 +8,6 @@ package generators;
  * @author Colin Lambrechts
  */
 public class TableGenerator {
-
-    /**
-     * The separator between tables
-     */
-    private static final String SEPARATOR = "x";
-
-    /**
-     * The line separator on this system
-     */
-    private static final String NEWLINE = System.getProperty("line.separator");
 
     /**
      * All possible combinations of colours that are possible
@@ -45,13 +32,13 @@ public class TableGenerator {
         String statement = "";
 
         //Generate the complete graph so do a double for loop
-        for (int i = 1; i <= nrVertices; i++) {
+        for (int i = 0; i <= nrVertices; i++) {
             for (int j = i + 1; j <= nrVertices; j++) {
                 // First create table
                 String ct = "CREATE TABLE " // create statement/command
-                        + "edge" + i + TableGenerator.SEPARATOR + j // the name of the table
+                        + "edge" + i + Config.SEPARATOR + j // the name of the table
                         + " (\"" + i + "\" int, \"" + j + "\" int)" // the columns of the table
-                        + ";" + TableGenerator.NEWLINE //teh ending of the query
+                        + ";" + Config.NEWLINE //teh ending of the query
                         ;
 
                 // Second insert values into the table
@@ -64,11 +51,39 @@ public class TableGenerator {
                 // For each combination, insert
                 for (Pair p : TableGenerator.COLOURCOMBINATIONS) {
                     it += itp + p.toString() // add the actual values to the query
-                            + ";" + TableGenerator.NEWLINE; // add ending of the query
+                            + ";" + Config.NEWLINE; // add ending of the query
                 }
 
                 // adding the SQL statements for this edge to the overall statement
-                statement += ct + it + TableGenerator.NEWLINE;;
+                statement += ct + it + Config.NEWLINE;;
+            }
+        }
+
+        return statement;
+    }
+
+    /**
+     * Generates a SQL statement to clean up the database (drops all tables
+     * generate) Keep in mind that only till the nrVertices the tables are
+     * generated/dropped
+     *
+     * @param nrVertices the number of vertices
+     * @return
+     */
+    public static String DropTables(int nrVertices) {
+        String statement = "";
+
+        //Generate the complete graph so do a double for loop
+        for (int i = 0; i <= nrVertices; i++) {
+            for (int j = i + 1; j <= nrVertices; j++) {
+                // First create table
+                String ct = "DROP TABLE " // create statement/command
+                        + "edge" + i + Config.SEPARATOR + j // the name of the table
+                        + ";"//the ending of the query
+                        ;
+
+                // adding the SQL statements for this edge to the overall statement
+                statement += ct + Config.NEWLINE;;
             }
         }
 
@@ -79,7 +94,10 @@ public class TableGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String out = TableGenerator.GenerateTable(4);
+        //String out = TableGenerator.GenerateTable(4);
+        //String out = TableGenerator.GenerateTable(50);
+
+        String out = TableGenerator.DropTables(50);
 
         System.out.println(out);
     }
