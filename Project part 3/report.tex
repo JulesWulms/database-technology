@@ -33,7 +33,7 @@
 
 %-------------------------------- Title ----------------------------------
 
-\title{\vspace{-\baselineskip}\sffamily\bfseries Deliverable 1 2ID35 \\ Database Technology }
+\title{\vspace{-\baselineskip}\sffamily\bfseries Deliverable 2 2ID35 \\ Database Technology }
 
 \author{
 C. Lambrechts - 0733885 - {\tt c.lambrechts@student.tue.nl} \\
@@ -53,12 +53,16 @@ J. Wulms - 0747580 - {\tt j.j.h.m.wulms@student.tue.nl}\\
 \end{abstract}
 
 \section{Verification} \label{sec:Verification}
-For the verification we are working on the algorithms to implement. The naive approach is implemented. It is better to include some better tests. This means that all tables are already imported, hence the table generator works. 
+We started working on the plan we made at the start, going for a structure were we have a graph generator and a query generator. The graph generator is able to generate random graphs, having varying order or density, to mimic the experiments in the paper. We are still working on generating the graphs with a special structure, like augmented and ladder graphs. \\
+
+The query generator is also in place, with the naive approach algorithm already implemented. The other algorithms will follow soon, the only one that can possibly give problems is the bucket elimination, since that is the most complex algorithm. \\
+
+To test the algorithms that we have recreated so far, we needed tables in PostgreSQL, in order to run the queries on them. We have implemented a table generator, which generates SQL code to create the tables with the same names and column names as in the generated queries. This generator helped us to automatically create a big number of tables, in a fast and precise way. 
 
 \section{Claims} \label{sec:Claims}
-We did not yet have any claims verified, because  we are still working on the implementation of the different algorithms. 
+We have not yet verified any claims, since we are still working on the implementation of the different algorithms. Once we have more algorithms in place, we can start comparing the results and verifying the claims. 
 
-\section{Extensions} label{sec:Extensions}
-
+\section{Extensions} \label{sec:Extensions}
+The programs that we have written are very modular, so they make it very easy to add extensions. When we are done verifying the claims, we can easily add other algorithms and graph types in the current architecture.
 
 \end{document}
