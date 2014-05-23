@@ -19,6 +19,10 @@ public class GraphGenerator {
         graphs = new Graph[n];
     }
 
+	/**
+	 * Generate graphs.length Graphs with fixed order {@code order} and scaling density
+	 * @param order fixed order
+	 */
     public void generateGraphs(int order) {
         for (int i = 0; i < graphs.length; i++) {
             graphs[i] = new Graph(order, (i + 1) * 0.5);
@@ -31,43 +35,24 @@ public class GraphGenerator {
         }
     }
 
+	/**
+	 * Generate graphs.length Graphs with fixed density {@code density} and scaling order
+	 * @param order fixed density
+	 */
     public void generateGraphs(double density) {
         for (int i = 0; i < graphs.length; i++) {
             graphs[i] = new Graph(10 + i, density);
         }
     }
 
+	/**
+	 * Generate graphs.length Graphs of the type {@code type}, with scaling order (order = length of structure)
+	 * @param type the type of generated graphs
+	 */
     public void generateGraphs(GraphType type) {
-        switch (type) {
-            case augmented:
-                generateAugmentedGraphs();
-                break;
-            case ladder:
-                generateLadderGraphs();
-                break;
-            case augladder:
-                generateAugLadderGraphs();
-                break;
-            case circaugladder:
-                generateCircAugLadderGraphs();
-                break;
+        for (int i = 0; i < graphs.length; i++) {
+            graphs[i] = new Graph(5 + i, type);
         }
-    }
-
-    private void generateAugmentedGraphs() {
-        // TODO: not implemented yet
-    }
-
-    private void generateLadderGraphs() {
-        // TODO: not implemented yet
-    }
-
-    private void generateAugLadderGraphs() {
-        // TODO: not implemented yet
-    }
-
-    private void generateCircAugLadderGraphs() {
-        // TODO: not implemented yet
     }
 
     public Graph getGraph(int i) {
@@ -79,9 +64,10 @@ public class GraphGenerator {
      */
     public static void main(String[] args) {
         int amount = 1;
-        int order = 50;
+        int order = 3;
         GraphGenerator graphGen = new GraphGenerator(amount);
-        graphGen.generateGraphs(order);
+        //graphGen.generateGraphs(order);
+		graphGen.generateGraphs(GraphType.circaugladder);
 
         for (int i = 0; i < amount; i++) {
             System.out.println(graphGen.getGraph(i).toString());
