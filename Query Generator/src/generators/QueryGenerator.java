@@ -64,7 +64,7 @@ public class QueryGenerator {
         }
     }
 
-    public void generateQueries(GraphType graph, TranslationType type) {
+    public void generateQueries(int n, GraphType graph, TranslationType type) {
         GraphGenerator graphGen = new GraphGenerator(queries.length);
         graphGen.generateGraphs(graph);
 
@@ -90,7 +90,7 @@ public class QueryGenerator {
         }
     }
 
-    private void generateNaiveQuery(int index, Graph graph) {
+    private void generateNaiveColinQuery(int index, Graph graph) {
         queries[index] = new Query();
         // SELECT first vertex in first edge
         queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
@@ -161,6 +161,45 @@ public class QueryGenerator {
         }
 
     }
+	
+	private void generateNaiveQuery(int index, Graph graph) {
+		queries[index] = new Query();
+        // SELECT first vertex in first edge
+        queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
+                + ".\"" + graph.getEdge(0).getVertex1() + "\"");
+
+        // put all the tables for an edge in the FROM clause
+        for (int i = 0; i < graph.getSize(); i++) {
+            // for each edge add table to FROM clause
+            queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(i)));
+
+            if (i < graph.getSize() - 1) {
+                // not the last so add also an "," for continuing list
+                queries[index].addFROM(", ");
+            }
+        }
+		
+		// add first true conjuction element, becasue then each new constraint can begin with " AND "
+        queries[index].addWHERE("(1=1)");
+
+		Edge e;
+		// enforce equality of columns
+		for(int i = 0; i < graph.getSize(); i++) {
+			e = graph.getEdge(i);
+			queries[index].addWHERE(Config.NEWLINE + "AND "
+								+ Config.getTableNameFromEdge(e)
+								+ ".\"" + e.getVertex1() + "\" "
+								+ " = "
+								+ Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex1())))
+								+ ".\"" + e.getVertex1() + "\" "
+								+ Config.NEWLINE + "AND "
+								+ Config.getTableNameFromEdge(graph.getEdge(i))
+								+ ".\"" + e.getVertex2() + "\" "
+								+ " = "
+								+ Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex2())))
+								+ ".\"" + e.getVertex2() + "\" ");
+		}
+	}
 
     private void generateStraightforwardQuery(int index, Graph graph) {
         // TODO: implement algorithm here
@@ -246,8 +285,8 @@ public class QueryGenerator {
         double density = 1.0d;
         QueryGenerator queryGen = new QueryGenerator(amount);
 
-        //queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
-        queryGen.generateQueries(order, /*density,*/ TranslationType.straightforward);
+        queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
+        //queryGen.generateQueries(order, /*density,*/ TranslationType.straightforward);
         for (int i = 0; i < amount; i++) {
             System.out.println(queryGen.getQuery(i) + Config.NEWLINE);
         }
