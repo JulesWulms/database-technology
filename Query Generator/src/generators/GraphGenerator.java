@@ -63,11 +63,11 @@ public class GraphGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int amount = 1;
-        int order = 3;
+        int amount = 2;
+        int order = 15;
         GraphGenerator graphGen = new GraphGenerator(amount);
-        //graphGen.generateGraphs(order);
-		graphGen.generateGraphs(GraphType.circaugladder);
+        graphGen.generateGraphs(order);
+		//graphGen.generateGraphs(GraphType.circaugladder);
 
         for (int i = 0; i < amount; i++) {
             System.out.println(graphGen.getGraph(i).toString());
