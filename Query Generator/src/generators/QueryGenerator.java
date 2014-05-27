@@ -28,57 +28,37 @@ import sqlquery.Query;
 public class QueryGenerator {
 
     private Query[] queries;
+    private GraphGenerator graphGen;
 
     public enum TranslationType {
 
         naive, straightforward, pushingReordering, bucketElim
     }
 
-    public QueryGenerator(int n) {
+    public QueryGenerator(int n, int order) {
         queries = new Query[n];
-    }
 
-    public void generateQueries(int order, TranslationType type) {
-        GraphGenerator graphGen = new GraphGenerator(queries.length);
+        graphGen = new GraphGenerator(queries.length);
         graphGen.generateGraphs(order);
-
-        for (int i = 0; i < queries.length; i++) {
-            //System.out.println(graphGen.getGraph(i).toString());
-            generateQueries(i, graphGen.getGraph(i), type);
-        }
     }
 
-    /**
-     * Generates graphs and queries for these graphs based on order and density
-     *
-     * @param order the order of the number of vertices
-     * @param density the density of the graph
-     * @param type the type of graphs that need to be generated
-     */
-    public void generateQueries(int order, double density, TranslationType type) {
-        GraphGenerator graphGen = new GraphGenerator(queries.length);
-        graphGen.generateGraphs(order, density);
+    public QueryGenerator(int n, double density) {
+        queries = new Query[n];
 
-        for (int i = 0; i < queries.length; i++) {
-            //System.out.println(graphGen.getGraph(i).toString());
-            generateQueries(i, graphGen.getGraph(i), type);
-        }
-    }
-
-    public void generateQueries(double density, TranslationType type) {
-        GraphGenerator graphGen = new GraphGenerator(queries.length);
+        graphGen = new GraphGenerator(queries.length);
         graphGen.generateGraphs(density);
-
-        for (int i = 0; i < queries.length; i++) {
-            generateQueries(i, graphGen.getGraph(i), type);
-        }
     }
 
-    public void generateQueries(int n, GraphType graph, TranslationType type) {
-        GraphGenerator graphGen = new GraphGenerator(queries.length);
-        graphGen.generateGraphs(graph);
+    public QueryGenerator(int n, GraphType graph) {
+        queries = new Query[n];
 
+        graphGen = new GraphGenerator(queries.length);
+        graphGen.generateGraphs(graph);
+    }
+
+    public void generateQueries(TranslationType type) {
         for (int i = 0; i < queries.length; i++) {
+            //System.out.println(graphGen.getGraph(i).toString());
             generateQueries(i, graphGen.getGraph(i), type);
         }
     }
@@ -171,9 +151,9 @@ public class QueryGenerator {
         }
 
     }
-	
-	private void generateNaiveQuery(int index, Graph graph) {
-		queries[index] = new Query();
+
+    private void generateNaiveQuery(int index, Graph graph) {
+        queries[index] = new Query();
         // SELECT first vertex in first edge
         queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
                 + ".\"" + graph.getEdge(0).getVertex1() + "\"");
@@ -188,28 +168,28 @@ public class QueryGenerator {
                 queries[index].addFROM(", ");
             }
         }
-		
-		// add first true conjuction element, becasue then each new constraint can begin with " AND "
+
+        // add first true conjuction element, becasue then each new constraint can begin with " AND "
         queries[index].addWHERE("(1=1)");
 
-		Edge e;
-		// enforce equality of columns
-		for(int i = 0; i < graph.getSize(); i++) {
-			e = graph.getEdge(i);
-			queries[index].addWHERE(Config.NEWLINE + "AND "
-								+ Config.getTableNameFromEdge(e)
-								+ ".\"" + e.getVertex1() + "\" "
-								+ " = "
-								+ Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex1())))
-								+ ".\"" + e.getVertex1() + "\" "
-								+ Config.NEWLINE + "AND "
-								+ Config.getTableNameFromEdge(graph.getEdge(i))
-								+ ".\"" + e.getVertex2() + "\" "
-								+ " = "
-								+ Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex2())))
-								+ ".\"" + e.getVertex2() + "\" ");
-		}
-	}
+        Edge e;
+        // enforce equality of columns
+        for (int i = 0; i < graph.getSize(); i++) {
+            e = graph.getEdge(i);
+            queries[index].addWHERE(Config.NEWLINE + "AND "
+                    + Config.getTableNameFromEdge(e)
+                    + ".\"" + e.getVertex1() + "\" "
+                    + " = "
+                    + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex1())))
+                    + ".\"" + e.getVertex1() + "\" "
+                    + Config.NEWLINE + "AND "
+                    + Config.getTableNameFromEdge(graph.getEdge(i))
+                    + ".\"" + e.getVertex2() + "\" "
+                    + " = "
+                    + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex2())))
+                    + ".\"" + e.getVertex2() + "\" ");
+        }
+    }
 
     private void generateStraightforwardQuery(int index, Graph graph) {
         // TODO: implement algorithm here
@@ -290,13 +270,13 @@ public class QueryGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int amount = 5;
+        int amount = 2;
         int order = 20;
         double density = 1.0d;
-        QueryGenerator queryGen = new QueryGenerator(amount);
+        QueryGenerator queryGen = new QueryGenerator(amount, order);
 
-        //queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
-        queryGen.generateQueries(order, /*density,*/ TranslationType.straightforward);
+        queryGen.generateQueries(TranslationType.naive);
+        //queryGen.generateQueries(TranslationType.straightforward);
 
         Date now = new Date(System.currentTimeMillis());
         String dir = "temp/2ID35/" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());

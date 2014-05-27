@@ -80,10 +80,8 @@ public final class Graph {
         int j, k;
 		Edge e;
         for (int i = 0; i < edges.length; i++) {
-            do {
-                j = r.nextInt(posEdges.size());
-				e = posEdges.get(j);
-            } while (edgeExists(i, e.getVertex1(), e.getVertex2())); // no selfloops and no double edges
+			j = r.nextInt(posEdges.size());
+			e = posEdges.get(j);
             edges[i] = e;
 			posEdges.remove(j);
             // remember first/lowest occurrence
