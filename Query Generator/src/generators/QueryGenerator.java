@@ -7,7 +7,17 @@ package generators;
 import graph.Edge;
 import graph.Graph;
 import graph.Graph.GraphType;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sqlquery.Config;
 import sqlquery.Query;
 
@@ -249,14 +259,14 @@ public class QueryGenerator {
                             + ".\"" + e1.getVertex2() + "\""
                     );
                 }
-                
+
                 // add edge to edges_handled
                 edges_handled.add(e2);
             }
             // add new line for readibility
             queries[index].addFROM(Config.NEWLINE);
         }
-        
+
         // add (1=1) to empty where clause
         queries[index].addWHERE("(1=1)");
 
@@ -280,15 +290,34 @@ public class QueryGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int amount = 1;
+        int amount = 5;
         int order = 20;
         double density = 1.0d;
         QueryGenerator queryGen = new QueryGenerator(amount);
 
-        queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
-        //queryGen.generateQueries(order, /*density,*/ TranslationType.straightforward);
+        //queryGen.generateQueries(order, /*density,*/ TranslationType.naive);
+        queryGen.generateQueries(order, /*density,*/ TranslationType.straightforward);
+
+        Date now = new Date(System.currentTimeMillis());
+        String dir = "temp/2ID35/" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        new File("/" + dir).mkdirs();
         for (int i = 0; i < amount; i++) {
-            System.out.println(queryGen.getQuery(i) + Config.NEWLINE);
+
+            try {
+                new File("/" + dir + "/query_" + i + ".sql").createNewFile();
+                PrintWriter writer;
+
+                writer = new PrintWriter("/" + dir + "/query_" + i + ".sql", "UTF-8");
+                writer.println(queryGen.getQuery(i));
+                writer.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
     }
 }
