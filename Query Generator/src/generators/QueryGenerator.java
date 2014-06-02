@@ -32,7 +32,7 @@ public class QueryGenerator {
 
     public enum TranslationType {
 
-        naive, straightforward, pushingReordering, bucketElim
+        naive, straightforward, earlyProjection, reordering, bucketElim
     }
 
     public QueryGenerator(int n, int order) {
@@ -71,8 +71,11 @@ public class QueryGenerator {
             case straightforward:
                 generateStraightforwardQuery(index, graph);
                 break;
-            case pushingReordering:
-                generatePushReorderQuery(index, graph);
+			case earlyProjection:
+				generateEarlyProjQuery(index, graph);
+				break;
+            case reordering:
+                generateReorderQuery(index, graph);
                 break;
             case bucketElim:
                 generateBucketElimQuery(index, graph);
@@ -191,8 +194,7 @@ public class QueryGenerator {
         }
     }
 
-    private void generateStraightforwardQuery(int index, Graph graph) {
-        // TODO: implement algorithm here
+    private void generateStraightforwardColinQuery(int index, Graph graph) {
         queries[index] = new Query();
         // SELECT first vertex in first edge
         queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
@@ -251,10 +253,88 @@ public class QueryGenerator {
         queries[index].addWHERE("(1=1)");
 
     }
-
-    private void generatePushReorderQuery(int index, Graph graph) {
+	
+	private void generateStraightforwardQuery(int index, Graph graph) {
         queries[index] = new Query();
-        // TODO: implement algorithm here
+        // SELECT first vertex in first edge
+        queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
+                + ".\"" + graph.getEdge(0).getVertex1() + "\"");
+
+        // put all the tables for an edge in the FROM clause
+        for (int i = graph.getSize() - 1; i > 0; i--) {
+            // for each edge add table to FROM clause
+            queries[index].addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
+		}
+		
+		// add last edge table to end the join-nesting
+		queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
+
+        Edge e;
+        // enforce equality of columns (start at index 1 since 0 will only state trivial equalities)
+        for (int i = 1; i < graph.getSize(); i++) {
+            e = graph.getEdge(i);
+            queries[index].addFROM(Config.NEWLINE + "ON "
+                    + Config.getTableNameFromEdge(e)
+                    + ".\"" + e.getVertex1() + "\" "
+                    + " = "
+                    + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex1())))
+                    + ".\"" + e.getVertex1() + "\" "
+                    + " AND "
+                    + Config.getTableNameFromEdge(graph.getEdge(i))
+                    + ".\"" + e.getVertex2() + "\" "
+                    + " = "
+                    + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex2())))
+                    + ".\"" + e.getVertex2() + "\" ) ");
+        }
+		
+		// add (1=1) for an empty and valid where clause
+        queries[index].addWHERE("(1=1)");
+    }
+
+    private void generateEarlyProjQuery(int index, Graph graph) {
+        queries[index] = new Query();
+        // SELECT first vertex in first edge
+        queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
+                + ".\"" + graph.getEdge(0).getVertex1() + "\"");
+
+        // put all the tables for an edge in the FROM clause
+        for (int i = graph.getSize() - 1; i > 0; i--) {
+            // for each edge add table to FROM clause
+			if(false) { // early projection possible
+				// recursively create subquery
+			} else { // just proceed without projection
+				queries[index].addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
+			}
+		}
+		
+		// add last edge table to end the join-nesting
+		queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
+
+        Edge e;
+        // enforce equality of columns (start at index 1 since 0 will only state trivial equalities)
+        for (int i = 1; i < graph.getSize(); i++) {
+            e = graph.getEdge(i);
+            queries[index].addFROM(Config.NEWLINE + "ON "
+                    + Config.getTableNameFromEdge(e)
+                    + ".\"" + e.getVertex1() + "\" "
+                    + " = "
+                    + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex1())))
+                    + ".\"" + e.getVertex1() + "\" "
+                    + " AND "
+                    + Config.getTableNameFromEdge(graph.getEdge(i))
+                    + ".\"" + e.getVertex2() + "\" "
+                    + " = "
+                    + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex2())))
+                    + ".\"" + e.getVertex2() + "\" ) ");
+        }
+		
+		// add (1=1) for an empty and valid where clause
+        queries[index].addWHERE("(1=1)");
+    }
+	
+	private void generateReorderQuery(int index, Graph graph) {
+		Graph graph2 = graph.earlyProject();
+		generateEarlyProjQuery(index, graph2);
     }
 
     private void generateBucketElimQuery(int index, Graph graph) {
@@ -270,13 +350,13 @@ public class QueryGenerator {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int amount = 2;
+        int amount = 1;
         int order = 20;
         double density = 1.0d;
         QueryGenerator queryGen = new QueryGenerator(amount, order);
 
-        queryGen.generateQueries(TranslationType.naive);
-        //queryGen.generateQueries(TranslationType.straightforward);
+        //queryGen.generateQueries(TranslationType.naive);
+        queryGen.generateQueries(TranslationType.straightforward);
 
         Date now = new Date(System.currentTimeMillis());
         String dir = "temp/2ID35/" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());

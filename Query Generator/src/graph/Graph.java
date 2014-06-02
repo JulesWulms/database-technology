@@ -12,7 +12,7 @@ import java.util.Random;
  *
  * @author s105301, Colin
  */
-public final class Graph {
+public class Graph {
 
     public enum GraphType {
 
@@ -20,9 +20,10 @@ public final class Graph {
     };
 
     private final String[] vertices;
-    private final Edge[] edges;
+    private Edge[] edges;
 
     private final int[] min_occur;
+	private int[] max_occur;
 
     public Graph(int order, double density) {
         int size = (int) (order * density);
@@ -30,8 +31,10 @@ public final class Graph {
         edges = new Edge[size];
 
         min_occur = new int[order];
+		max_occur = new int[order];
         for (int i = 0; i < order; i++) {
             min_occur[i] = size;
+			max_occur[i] = -1;
         }
 
         generateGraph();
@@ -44,27 +47,38 @@ public final class Graph {
 				vertices = new String[2*n]; // each vertex in path had another dangling one
 				edges = new Edge[n+(n-1)]; // n-1 edges in path and n dangling edges 
 				min_occur = new int[2*n];
+				max_occur = new int[2*n];
                 generateAugmentedGraphs();
                 break;
             case ladder:
 				vertices = new String[2*n]; // each vertex has a counterpart at other side of rung
 				edges = new Edge[2*(n-1)+n]; // 2 paths of n-1 edges and connecting n pairs of vertices
 				min_occur = new int[2*n];
+				max_occur = new int[2*n];
                 generateLadderGraphs();
                 break;
             case augladder:
 				vertices = new String[4*n]; // each vertex has a counterpart and all of these have another dangling one
 				edges = new Edge[2*(n-1)+3*n]; // 2 paths of n-1 edges, n connecting edges, and 2*n dangling edges
 				min_occur = new int[4*n];
+				max_occur = new int[4*n];
                 generateAugLadderGraphs();
                 break;
             case circaugladder:
 				vertices = new String[4*n]; // each vertex has a counterpart and all of these have another dangling one
 				edges = new Edge[2*(n-1)+3*n+2]; // 2 circular paths of n edges, n connecting edges, 2*n dangling edges
 				min_occur = new int[4*n];
+				max_occur = new int[4*n];
                 generateCircAugLadderGraphs();
                 break;
         }
+	}
+	
+	private Graph(String[] v, Edge[] e, int[] min, int[] max) {
+		vertices = v;
+        edges = e;
+        min_occur = min;
+		max_occur = max;
 	}
 	
 	private void generateGraph() {
@@ -84,12 +98,19 @@ public final class Graph {
 			e = posEdges.get(j);
             edges[i] = e;
 			posEdges.remove(j);
-            // remember first/lowest occurrence
+			// remember first/lowest occurrence
             if (min_occur[e.getVertex1()] > i) {
                 min_occur[e.getVertex1()] = i;
             }
             if (min_occur[e.getVertex2()] > i) {
                 min_occur[e.getVertex2()] = i;
+            }
+			// remember last/highest occurrence
+            if (max_occur[e.getVertex1()] < i) {
+                max_occur[e.getVertex1()] = i;
+            }
+            if (max_occur[e.getVertex2()] < i) {
+                max_occur[e.getVertex2()] = i;
             }
         }
     }
@@ -308,6 +329,13 @@ public final class Graph {
 		if (min_occur[j] > i) {
 			min_occur[j] = i;
         }
+		// remember last/highest occurrence
+        if (max_occur[i] < i) {
+			max_occur[i] = i;
+        }
+		if (max_occur[j] < i) {
+			max_occur[j] = i;
+        }
 	}
 
     public int getOrder() {
@@ -325,10 +353,22 @@ public final class Graph {
     public Edge getEdge(int i) {
         return edges[i];
     }
+	
+	public void setEdge(int i, Edge e) {
+		edges[i] = e;
+	}
 
     public int minOccur(int vertex) {
         return min_occur[vertex];
     }
+	
+	public int maxOccur(int vertex) {
+        return max_occur[vertex];
+    }
+	
+	public void setMax(int vertex, int value) {
+		max_occur[vertex] = value;
+	}
 
     /**
      * Get all edges in this Graph
@@ -338,6 +378,11 @@ public final class Graph {
     public Edge[] getEdges() {
         return this.edges;
     }
+	
+	public Graph earlyProject() {
+		// TODO: create permutated edges
+		return new Graph(vertices, edges, min_occur, max_occur);
+	}
     
     /**
      * Get all edges in this Graph that shares the vertex with the given vertex
