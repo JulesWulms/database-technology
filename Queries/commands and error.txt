@@ -1,0 +1,6 @@
+psql:D:/GitHub/database-technology/Queries/test_o=50_a=1.sql:32: ERROR:  syntax
+error at or near "ï»¿SELECT"
+LINE 1: ï»¿SELECT edge1x9."1"
+        ^
+
+C:\Program Files\PostgreSQL\9.3\bin>psql -U postgres -d 2ID35 -a -f D:\GitHub\database-technology\Queries\test_o=50_a=1.sql
