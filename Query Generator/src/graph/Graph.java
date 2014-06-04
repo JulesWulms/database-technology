@@ -5,6 +5,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 /**
@@ -323,18 +324,18 @@ public class Graph {
 		}
         edges[index] = e;
         // remember first/lowest occurrence
-        if (min_occur[i] > i) {
-			min_occur[i] = i;
+        if (min_occur[i] > index) {
+			min_occur[i] = index;
         }
-		if (min_occur[j] > i) {
-			min_occur[j] = i;
+		if (min_occur[j] > index) {
+			min_occur[j] = index;
         }
 		// remember last/highest occurrence
-        if (max_occur[i] < i) {
-			max_occur[i] = i;
+        if (max_occur[i] < index) {
+			max_occur[i] = index;
         }
-		if (max_occur[j] < i) {
-			max_occur[j] = i;
+		if (max_occur[j] < index) {
+			max_occur[j] = index;
         }
 	}
 
@@ -366,8 +367,8 @@ public class Graph {
         return max_occur[vertex];
     }
 	
-	public void setMax(int vertex, int value) {
-		max_occur[vertex] = value;
+	public void setLive(int vertex) {
+		max_occur[vertex] = edges.length;
 	}
 
     /**
@@ -381,7 +382,71 @@ public class Graph {
 	
 	public Graph earlyProject() {
 		// TODO: create permutated edges
-		return new Graph(vertices, edges, min_occur, max_occur);
+		Edge[] permutated = new Edge[edges.length];
+		int[] min_oc = new int[vertices.length];
+		int[] max_oc = new int[vertices.length];
+		int[] occurrence = new int[vertices.length];
+		
+		for(int i = 0; i < edges.length; i++) {
+			permutated[i] = edges[i].clone();
+		}
+		
+		for (int i = 0; i < vertices.length; i++) {
+            min_oc[i] = edges.length;
+			max_oc[i] = -1;
+        }
+		
+		for(Edge e : edges) {
+			occurrence[e.getVertex1()]++;
+			occurrence[e.getVertex2()]++;
+		}
+		
+		for(int i = 0; i < permutated.length; i++) {
+			// initialise a mapping to see how many variables are projectable
+			HashMap<Integer, Integer> vars = new HashMap<Integer, Integer>();
+			for(int j = i; j < edges.length; j++) {
+				vars.put(j, 0);
+				if(occurrence[edges[j].getVertex1()] == 1) {
+					vars.put(j, vars.get(j)+1);
+				}
+				if(occurrence[edges[j].getVertex2()] == 1) {
+					vars.put(j, vars.get(j)+1);
+				}
+			}
+			// find the best vertex to project
+			int best = i;
+			int max = -1;
+			for(int j : vars.keySet()) {
+				if(vars.get(j) > max) {
+					max = vars.get(j);
+					best = j;
+				}
+			}
+			// create permutation
+			Edge temp = permutated[i];
+			permutated[i] = permutated[best];
+			permutated[best] = temp;
+			// update occurrences
+			occurrence[permutated[i].getVertex1()]--;
+			occurrence[permutated[i].getVertex2()]--;
+			// update min and max occurences
+			// remember first/lowest occurrence
+			if (min_oc[permutated[i].getVertex1()] > i) {
+				min_oc[permutated[i].getVertex1()] = i;
+			}
+			if (min_oc[permutated[i].getVertex2()] > i) {
+				min_oc[permutated[i].getVertex2()] = i;
+			}
+			// remember last/highest occurrence
+			if (max_oc[permutated[i].getVertex1()] < i) {
+				max_oc[permutated[i].getVertex1()] = i;
+			}
+			if (max_oc[permutated[i].getVertex2()] < i) {
+				max_oc[permutated[i].getVertex2()] = i;
+			}
+		}
+		
+		return new Graph(vertices.clone(), permutated, min_oc, max_oc);
 	}
     
     /**

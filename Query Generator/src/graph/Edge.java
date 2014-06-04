@@ -31,4 +31,9 @@ public final class Edge {
 	public String toString() {
 		return "Edge between " + getVertex1() + " and " + getVertex2();
 	}
+	
+	@Override
+	public Edge clone() {
+		return new Edge(edge[0], edge[1]);
+	}
 }
