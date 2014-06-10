@@ -26,52 +26,81 @@ import sqlquery.Config;
 public class Executor {
 
     public static void main(String args[]) {
-        int amount = 1;
+        int amount = 5;
         int order = 10;
-        double density = 1.0d;
+        double density = 0.5d;
         QueryGenerator queryGen = new QueryGenerator(amount, order);
-      
-        Date now = new Date(System.currentTimeMillis());
+
         String dir = "" + Config.DIRECTORY + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         new File("/" + dir).mkdirs();
 
-        ArrayList<Long> times = new ArrayList<Long>();
-        
+        ArrayList<String> results = new ArrayList<>();
+        //add header
+        results.add("Type; Number; Time");//TODO check if we need more data
+
         DBConnector dbc = new DBConnector();
         dbc.connect();
 
-        int j = 0;
         for (QueryGenerator.TranslationType t : QueryGenerator.TranslationType.values()) {
 
             queryGen.generateQueries(t);
 
-            for (int i = j * amount; i < (j + 1) * amount; i++) {
+            System.out.println("Executing quereies for " + t);
+
+            for (int i = 0; i < amount; i++) {
+
+                String filename = "/" + dir + "/query_" + t + "_" + i + ".sql";
+                System.out.println("Executing query_" + t + "_" + i);
+
+                //initiate time to 0 for when error happens
+                Long time = -1L;
 
                 try {
-                    new File("/" + dir + "/query_" + t + "_" + i + ".sql").createNewFile();
+                    new File(filename).createNewFile();
                     PrintWriter writer;
 
-                    writer = new PrintWriter("/" + dir + "/query_" + i + ".sql", "UTF-8");
-                    writer.println(queryGen.getQuery(i)); 
-                    //TODO fix index out of bounds : 1
+                    writer = new PrintWriter(filename, "UTF-8");
+                    writer.println(queryGen.getQuery(i));
                     writer.close();
 
                     //TODO: add other stuff for the csv based line
-                    times.add(dbc.executiontimeSelectQuery(queryGen.getQuery(i)));
+                    time = (dbc.executiontimeSelectQuery(queryGen.getQuery(i)));
 
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println(QueryGenerator.class.getName() + ex.getMessage());
                 } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println(QueryGenerator.class.getName() + ex.getMessage());
                 } catch (IOException ex) {
-                    Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
+                    System.err.println(QueryGenerator.class.getName() + ex.getMessage());
                 }
 
+                //add it to the result
+                results.add(t + ";" + i + ";" + time);//TODO add data if needed
+                //System.out.println("Execution time: " + time);
             }
-
-            j++;
         }
 
-        System.out.println(times);
+        System.out.println(results);
+
+        String resultsfilename = "/" + dir + "/results.csv";
+
+        try {
+            PrintWriter writer = new PrintWriter(resultsfilename, "UTF-8");
+            new File(resultsfilename).createNewFile();
+
+            for (int i = 0; i < results.size(); i++) {
+
+                writer.println(results.get(i));
+
+            }
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            System.err.println(QueryGenerator.class.getName() + ex.getMessage());
+        } catch (UnsupportedEncodingException ex) {
+            System.err.println(QueryGenerator.class.getName() + ex.getMessage());
+        } catch (IOException ex) {
+            System.err.println(QueryGenerator.class.getName() + ex.getMessage());
+        }
+
     }
 }

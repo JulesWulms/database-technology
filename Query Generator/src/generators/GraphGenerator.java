@@ -37,7 +37,7 @@ public class GraphGenerator {
 
 	/**
 	 * Generate graphs.length Graphs with fixed density {@code density} and scaling order
-	 * @param order fixed density
+	 * @param density fixed density
 	 */
     public void generateGraphs(double density) {
         for (int i = 0; i < graphs.length; i++) {

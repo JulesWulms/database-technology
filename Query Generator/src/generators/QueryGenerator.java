@@ -73,9 +73,9 @@ public class QueryGenerator {
             case straightforward:
                 generateStraightforwardQuery(index, graph);
                 break;
-			case earlyProjection:
-				generateEarlyProjQuery(index, graph);
-				break;
+            case earlyProjection:
+                generateEarlyProjQuery(index, graph);
+                break;
             case reordering:
                 generateReorderQuery(index, graph);
                 break;
@@ -255,8 +255,8 @@ public class QueryGenerator {
         queries[index].addWHERE("(1=1)");
 
     }
-	
-	private void generateStraightforwardQuery(int index, Graph graph) {
+
+    private void generateStraightforwardQuery(int index, Graph graph) {
         queries[index] = new Query();
         // SELECT first vertex in first edge
         queries[index].addSELECT(Config.getTableNameFromEdge(graph.getEdge(0))
@@ -266,10 +266,10 @@ public class QueryGenerator {
         for (int i = graph.getSize() - 1; i > 0; i--) {
             // for each edge add table to FROM clause
             queries[index].addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
-		}
-		
-		// add last edge table to end the join-nesting
-		queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
+        }
+
+        // add last edge table to end the join-nesting
+        queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
 
         Edge e;
         // enforce equality of columns (start at index 1 since 0 will only state trivial equalities)
@@ -288,60 +288,60 @@ public class QueryGenerator {
                     + Config.getTableNameFromEdge(graph.getEdge(graph.minOccur(e.getVertex2())))
                     + ".\"" + e.getVertex2() + "\" ) ");
         }
-		
-		// add (1=1) for an empty and valid where clause
+
+        // add (1=1) for an empty and valid where clause
         queries[index].addWHERE("(1=1)");
     }
 
     private void generateEarlyProjQuery(int index, Graph graph) {
         queries[index] = new Query();
-		
-		// make free vertices impossible to project out
-		graph.setLive(graph.getEdge(0).getVertex1());
-		
-		// save the names of tables so that we can change them
-		HashMap<Integer, String> names = new HashMap<Integer, String>();
-		for(int i = 0; i < graph.getOrder(); i++) {
-			int edge = graph.minOccur(i);
-			if(edge < graph.getSize()) {
-				names.put(i, "edge" + graph.getEdge(edge).getVertex1() + "x" + graph.getEdge(edge).getVertex2());
-			}
-		}
-		
-		HashSet<Integer> select = new HashSet<Integer>();
-		int stop = 1;
+
+        // make free vertices impossible to project out
+        graph.setLive(graph.getEdge(0).getVertex1());
+
+        // save the names of tables so that we can change them
+        HashMap<Integer, String> names = new HashMap<Integer, String>();
+        for (int i = 0; i < graph.getOrder(); i++) {
+            int edge = graph.minOccur(i);
+            if (edge < graph.getSize()) {
+                names.put(i, "edge" + graph.getEdge(edge).getVertex1() + "x" + graph.getEdge(edge).getVertex2());
+            }
+        }
+
+        HashSet<Integer> select = new HashSet<Integer>();
+        int stop = 1;
         // put all the tables for an edge in the FROM clause
         for (int i = graph.getSize() - 1; i > 0; i--) {
-			// check which vertices to project out
-			HashSet<Integer> project = new HashSet<Integer>();
-			int projectname = graph.getSize();
-			for(int j = 0; j < graph.getOrder(); j++) {
-				if(graph.maxOccur(j) == i) {
-					System.out.println("For Edge " + i + " Project " + j);
-					project.add(j);
-					projectname = j;
-				}
-			}
+            // check which vertices to project out
+            HashSet<Integer> project = new HashSet<Integer>();
+            int projectname = graph.getSize();
+            for (int j = 0; j < graph.getOrder(); j++) {
+                if (graph.maxOccur(j) == i) {
+                    //System.out.println("For Edge " + i + " Project " + j);
+                    project.add(j);
+                    projectname = j;
+                }
+            }
             // for each edge add table to FROM clause
-			if(!project.isEmpty()) { // early projection possible
-				// recursively create subquery
-				System.out.println("Projectname for edge " + i + ": " + projectname);
-				queries[index].addFROM(Config.NEWLINE + "( " + earlyProjQuery(i, select, project, projectname, names, graph) + " ) AS edgeP" + projectname);
-				stop = i;
-				i = 0;
-			} else { // just proceed without projection
-				queries[index].addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
-			}
-			
-			if(i == 1) {
-				// add last edge table to end the join-nesting
-				queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
-			}
-		}
-		
-		Edge e;
+            if (!project.isEmpty()) { // early projection possible
+                // recursively create subquery
+                //System.out.println("Projectname for edge " + i + ": " + projectname);
+                queries[index].addFROM(Config.NEWLINE + "( " + earlyProjQuery(i, select, project, projectname, names, graph) + " ) AS edgeP" + projectname);
+                stop = i;
+                i = 0;
+            } else { // just proceed without projection
+                queries[index].addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
+            }
+
+            if (i == 1) {
+                // add last edge table to end the join-nesting
+                queries[index].addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
+            }
+        }
+
+        Edge e;
         // enforce equality of columns (start at index 1 since 0 will only state trivial equalities)
-        for (int i = stop+1; i < graph.getSize(); i++) {
+        for (int i = stop + 1; i < graph.getSize(); i++) {
             e = graph.getEdge(i);
             queries[index].addFROM(Config.NEWLINE + "ON "
                     + Config.getTableNameFromEdge(e)
@@ -356,57 +356,57 @@ public class QueryGenerator {
                     + names.get(e.getVertex2())
                     + ".\"" + e.getVertex2() + "\" ) ");
         }
-		
-		// SELECT first vertex in first edge
+
+        // SELECT first vertex in first edge
         queries[index].addSELECT(names.get(graph.getEdge(0).getVertex1())
                 + ".\"" + graph.getEdge(0).getVertex1() + "\"");
-		
-		// add (1=1) for an empty and valid where clause
+
+        // add (1=1) for an empty and valid where clause
         queries[index].addWHERE("(1=1)");
     }
-	
-	private String earlyProjQuery(int index, HashSet<Integer> select, HashSet<Integer> p, int name, HashMap<Integer, String> names, Graph graph) {
-		Query dummy = new Query();
-		
-		int stop = index;
-		int projectname = graph.getSize();
-		ArrayList<Integer> joined = new ArrayList<Integer>();
+
+    private String earlyProjQuery(int index, HashSet<Integer> select, HashSet<Integer> p, int name, HashMap<Integer, String> names, Graph graph) {
+        Query dummy = new Query();
+
+        int stop = index;
+        int projectname = graph.getSize();
+        ArrayList<Integer> joined = new ArrayList<Integer>();
         // put all the tables for an edge in the FROM clause
         for (int i = index; i > 0; i--) {
-			// check which vertices to project out
-			HashSet<Integer> project = new HashSet<Integer>();
-			for(int j = 0; j < graph.getOrder(); j++) {
-				if(graph.maxOccur(j) == i && !p.contains(j)) {
-					System.out.println("For Edge " + i + " Project " + j);
-					project.add(j);
-					projectname = j;
-				}
-			}
+            // check which vertices to project out
+            HashSet<Integer> project = new HashSet<Integer>();
+            for (int j = 0; j < graph.getOrder(); j++) {
+                if (graph.maxOccur(j) == i && !p.contains(j)) {
+                    //System.out.println("For Edge " + i + " Project " + j);
+                    project.add(j);
+                    projectname = j;
+                }
+            }
             // for each edge add table to FROM clause
-			if(!project.isEmpty()) { // early projection possible
-				// recursively create subquery
-				System.out.println("Projectname for iteration " + index + ": " + projectname);
-				dummy.addFROM(Config.NEWLINE + "( " + earlyProjQuery(i, select, project, projectname, names, graph) + " ) AS edgeP" + projectname);
-				stop = i;
-				i = 0;
-			} else { // just proceed without projection
-				dummy.addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
-				joined.add(i);
-			}
-			
-			if(i == 1) {
-				// add last edge table to end the join-nesting
-				dummy.addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
-				select.add(graph.getEdge(0).getVertex1());
-				select.add(graph.getEdge(0).getVertex2());
-			}
-		}
-		
-		Edge e;
-		// at the last recursion, enforce equality on actual stop, else it should be placed in subquery/next recursion
-		if(index > 1) {
-			stop++;
-		}
+            if (!project.isEmpty()) { // early projection possible
+                // recursively create subquery
+                //System.out.println("Projectname for iteration " + index + ": " + projectname);
+                dummy.addFROM(Config.NEWLINE + "( " + earlyProjQuery(i, select, project, projectname, names, graph) + " ) AS edgeP" + projectname);
+                stop = i;
+                i = 0;
+            } else { // just proceed without projection
+                dummy.addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(graph.getEdge(i)) + " JOIN ");
+                joined.add(i);
+            }
+
+            if (i == 1) {
+                // add last edge table to end the join-nesting
+                dummy.addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
+                select.add(graph.getEdge(0).getVertex1());
+                select.add(graph.getEdge(0).getVertex2());
+            }
+        }
+
+        Edge e;
+        // at the last recursion, enforce equality on actual stop, else it should be placed in subquery/next recursion
+        if (index > 1) {
+            stop++;
+        }
         // enforce equality of columns (start at index 1 since 0 will only state trivial equalities)
         for (int i = stop; i <= index; i++) {
             e = graph.getEdge(i);
@@ -423,37 +423,37 @@ public class QueryGenerator {
                     + names.get(e.getVertex2())
                     + ".\"" + e.getVertex2() + "\" ) ");
         }
-		
-		// SELECT livevars
-		select.add(graph.getEdge(index).getVertex1());
-		select.add(graph.getEdge(index).getVertex2());
-		for(int j : joined) {
-			select.add(graph.getEdge(j).getVertex1());
-			select.add(graph.getEdge(j).getVertex2());
-		}
-		select.removeAll(p);
-		boolean first = true;
-		for(int i : select) {
-			if(first) {
-				System.out.println("Projectname for iteration " + index + ": " + projectname);
-				dummy.addSELECT(names.get(i) + ".\"" + i + "\"");
-				names.put(i, "edgeP" + name);
-				first = false;
-			} else {
-				dummy.addSELECT(", " + names.get(i) + ".\"" + i + "\"");
-				names.put(i, "edgeP" + name);
-			}
-		}
-		
-		// add (1=1) for an empty and valid where clause
+
+        // SELECT livevars
+        select.add(graph.getEdge(index).getVertex1());
+        select.add(graph.getEdge(index).getVertex2());
+        for (int j : joined) {
+            select.add(graph.getEdge(j).getVertex1());
+            select.add(graph.getEdge(j).getVertex2());
+        }
+        select.removeAll(p);
+        boolean first = true;
+        for (int i : select) {
+            if (first) {
+                //System.out.println("Projectname for iteration " + index + ": " + projectname);
+                dummy.addSELECT(names.get(i) + ".\"" + i + "\"");
+                names.put(i, "edgeP" + name);
+                first = false;
+            } else {
+                dummy.addSELECT(", " + names.get(i) + ".\"" + i + "\"");
+                names.put(i, "edgeP" + name);
+            }
+        }
+
+        // add (1=1) for an empty and valid where clause
         dummy.addWHERE("(1=1)");
-		
-		return dummy.getQuery();
-	}
-	
-	private void generateReorderQuery(int index, Graph graph) {
-		Graph graph2 = graph.earlyProject();
-		generateEarlyProjQuery(index, graph2);
+
+        return dummy.getQuery();
+    }
+
+    private void generateReorderQuery(int index, Graph graph) {
+        Graph graph2 = graph.earlyProject();
+        generateEarlyProjQuery(index, graph2);
     }
 
     private void generateBucketElimQuery(int index, Graph graph) {
@@ -477,7 +477,6 @@ public class QueryGenerator {
         //queryGen.generateQueries(TranslationType.naive);
         queryGen.generateQueries(TranslationType.earlyProjection);
 
-        Date now = new Date(System.currentTimeMillis());
         String dir = "" + Config.DIRECTORY + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         new File("/" + dir).mkdirs();
         for (int i = 0; i < amount; i++) {
@@ -498,17 +497,17 @@ public class QueryGenerator {
             }
 
         }
-		
-		queryGen.generateQueries(TranslationType.reordering);
 
-        for (int i = amount; i < 2*amount; i++) {
+        queryGen.generateQueries(TranslationType.reordering);
+
+        for (int i = amount; i < 2 * amount; i++) {
 
             try {
                 new File("/" + dir + "/query_" + i + ".sql").createNewFile();
                 PrintWriter writer;
 
                 writer = new PrintWriter("/" + dir + "/query_" + i + ".sql", "UTF-8");
-                writer.println(queryGen.getQuery(i-amount));
+                writer.println(queryGen.getQuery(i - amount));
                 writer.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);

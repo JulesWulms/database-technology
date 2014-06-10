@@ -52,6 +52,17 @@ public class DBConnector {
     }
 
     /**
+     * disconnects from the postgresql service and the database
+     */
+    public void disconnect() {
+        try {
+            con.close();
+        } catch (SQLException ex) {
+            System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
+        }
+    }
+
+    /**
      * Executes the query given as String
      *
      * @param sql the sql statement that needs to be executed
@@ -62,11 +73,10 @@ public class DBConnector {
             long start;
             long end;
             try (Statement stmt = con.createStatement()) {
-                start = new Date().getTime();
+                start = System.nanoTime();
                 stmt.executeQuery(sql);
-                end = new Date().getTime();
+                end = System.nanoTime();
             }
-            con.close();
             return end - start;
         } catch (SQLException ex) {
             System.err.println(ex.getClass().getName() + ": " + ex.getMessage());
