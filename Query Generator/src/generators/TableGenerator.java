@@ -95,9 +95,9 @@ public class TableGenerator {
      */
     public static void main(String[] args) {
         //String out = TableGenerator.GenerateTable(4);
-        //String out = TableGenerator.GenerateTable(50);
+        String out = TableGenerator.GenerateTable(50);
 
-        String out = TableGenerator.DropTables(50);
+        //String out = TableGenerator.DropTables(50);
 
         System.out.println(out);
     }

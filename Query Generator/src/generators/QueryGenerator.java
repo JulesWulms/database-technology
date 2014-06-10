@@ -478,7 +478,7 @@ public class QueryGenerator {
         queryGen.generateQueries(TranslationType.earlyProjection);
 
         Date now = new Date(System.currentTimeMillis());
-        String dir = "temp/2ID35/" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        String dir = "" + Config.DIRECTORY + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         new File("/" + dir).mkdirs();
         for (int i = 0; i < amount; i++) {
 
