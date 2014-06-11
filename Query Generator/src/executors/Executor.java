@@ -14,9 +14,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import sqlquery.Config;
 
 /**
@@ -45,7 +42,7 @@ public class Executor {
 
             queryGen.generateQueries(t);
 
-            System.out.println("Executing quereies for " + t);
+            System.out.println("Executing queries for " + t);
 
             for (int i = 0; i < amount; i++) {
 

@@ -15,7 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
@@ -367,6 +366,7 @@ public class QueryGenerator {
 
     private String earlyProjQuery(int index, HashSet<Integer> select, HashSet<Integer> p, int name, HashMap<Integer, String> names, Graph graph) {
         Query dummy = new Query();
+		boolean end = false;
 
         int stop = index;
         int projectname = graph.getSize();
@@ -399,12 +399,14 @@ public class QueryGenerator {
                 dummy.addFROM(Config.getTableNameFromEdge(graph.getEdge(0)));
                 select.add(graph.getEdge(0).getVertex1());
                 select.add(graph.getEdge(0).getVertex2());
+				stop = 1;
+				end = true;
             }
         }
 
         Edge e;
         // at the last recursion, enforce equality on actual stop, else it should be placed in subquery/next recursion
-        if (index > 1) {
+        if (index > 1 && !end) {
             stop++;
         }
         // enforce equality of columns (start at index 1 since 0 will only state trivial equalities)
