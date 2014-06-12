@@ -27,7 +27,8 @@ public class Graph {
 	private int[] max_occur;
 
     public Graph(int order, double density) {
-        int size = (int) (order * density);
+        int size = Math.min((int) (order * density), (int) (order * (order - 1))/2);
+        // select minimum from complete graph and normal number of edges
         vertices = new String[order];
         edges = new Edge[size];
 

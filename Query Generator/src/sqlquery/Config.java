@@ -27,6 +27,7 @@ public class Config {
      * Generates the table name for a given edge
      *
      * @param e the edge
+     * @return name of the table for the edge e
      */
     public static String getTableNameFromEdge(Edge e) {
         // the smallest goes first

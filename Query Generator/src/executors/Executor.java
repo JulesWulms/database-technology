@@ -23,10 +23,14 @@ import sqlquery.Config;
 public class Executor {
 
     public static void main(String args[]) {
-        int amount = 5;
-        int order = 10;
-        double density = 0.5d;
-        QueryGenerator queryGen = new QueryGenerator(amount, order);
+        int amount = 18;
+        int order1 = 20;
+        double density2 = 3.0d;
+        double density3 = 6.0d;
+        
+        //QueryGenerator queryGen = new QueryGenerator(amount, order1);
+        //QueryGenerator queryGen = new QueryGenerator(amount, density2);
+        QueryGenerator queryGen = new QueryGenerator(amount, density3);
 
         String dir = "" + Config.DIRECTORY + new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         new File("/" + dir).mkdirs();
