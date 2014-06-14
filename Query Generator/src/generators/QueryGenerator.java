@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import sqlquery.Config;
@@ -459,8 +460,112 @@ public class QueryGenerator {
     }
 
     private void generateBucketElimQuery(int index, Graph graph) {
-        queries[index] = new Query();
-        // TODO: implement algorithm here
+		// get MCS order of vertices
+		Graph graph2 = graph.MCSorder();
+		// save the names of tables so that we can change them
+        HashMap<Integer, String> names = new HashMap<Integer, String>();
+		// create buckets in opposite order from MCS
+		Bucket[] buckets = new Bucket[graph2.getOrder()];
+		for(int i = 0; i < graph2.getOrder(); i++) {
+			// reverse order, starting from the back, so that edges are used in maximal bucket
+			buckets[i] = new Bucket(graph2.getOrder()-1-i, graph2, names);
+		}
+		// generate SQL query
+		Query q =  new Query();
+		Bucket b;
+		for(int i = 0; i < buckets.length; i++) {
+ 			q = new Query();
+			b = buckets[i];
+			
+			// do the Joins as Straightforward approach (both edges and subqueries)
+			// put all the tables for an edge in the FROM clause
+			for (int j = b.nrOfEdges() - 1; j > 0; j--) {
+				// for each edge add table to FROM clause
+				q.addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(b.getEdge(j)) + " JOIN ");
+			}
+
+			// add last edge table to end the join-nesting
+			if(b.nrOfSubqueries() == 0) {
+				if(b.nrOfEdges() > 0) {
+					q.addFROM(Config.getTableNameFromEdge(b.getEdge(0)));
+				}
+			} else {
+				if(b.nrOfEdges() > 0) {
+					q.addFROM(Config.NEWLINE + "( " + Config.getTableNameFromEdge(b.getEdge(0)) + " JOIN ");
+				}
+				// put all the tables for an edge in the FROM clause
+				for (int j = b.nrOfSubqueries() - 1; j > 0; j--) {
+					// for each edge add table to FROM clause
+					q.addFROM(Config.NEWLINE + b.getSubquery(j).getSubQuery() + " JOIN ");
+				}
+				q.addFROM(Config.NEWLINE + b.getSubquery(0).getSubQuery());
+			}
+			
+
+			Edge e;
+			// enforce equality of columns (start at index 1 when there are no subqueries)
+			int start;
+			if(b.nrOfSubqueries() == 0) {
+				start = 1;
+			} else {
+				start = 0;
+			}
+			for (int j = start; j < b.nrOfEdges(); j++) {
+				e = b.getEdge(j);
+				q.addFROM(Config.NEWLINE + "ON "
+						+ Config.getTableNameFromEdge(e)
+						+ ".\"" + e.getVertex1() + "\" "
+						+ " = "
+						+ names.get(e.getVertex1())
+						+ ".\"" + e.getVertex1() + "\" "
+						+ " AND "
+						+ Config.getTableNameFromEdge(b.getEdge(j))
+						+ ".\"" + e.getVertex2() + "\" "
+						+ " = "
+						+ names.get(e.getVertex2())
+						+ ".\"" + e.getVertex2() + "\" ) ");
+			}
+			
+			// add (1=1) for an empty and valid where clause
+			q.addWHERE("(1=1)");
+			
+			// resolve naming issues
+			q.addAS("bucket" + i);
+			
+			// put live variables in select statement and update the names
+			boolean first = true;
+			for (Iterator<Integer> it = b.getLiveVars().iterator(); it.hasNext();) {
+				int j = it.next();
+				if(first) {
+					q.addSELECT(names.get(j) + ".\"" + j + "\"");
+					first = false;
+					names.put(j, "bucket" + i);
+				} else {
+					q.addSELECT(", " + names.get(j) + ".\"" + j + "\"");
+					names.put(j, "bucket" + i);
+				}
+				
+			}
+			
+			// add subquery to "lower" bucket
+			for(int j = i+1; j < buckets.length; j++) {
+				if(b.getLiveVars().contains(buckets[j].getBucketIndex())) {
+					buckets[j].addSubquery(q);
+					// correct the livevars for the bucket
+					for (Iterator<Integer> it = b.getLiveVars().iterator(); it.hasNext();) {
+						int k = it.next();
+						if(buckets[j].getBucketIndex() != k) {
+							buckets[j].addLiveVar(k);
+						}
+					}
+					// end the loop, only adding in 1 bucket
+					j = buckets.length;
+				}
+			}
+		}
+		
+		// final query
+        queries[index] = q;
     }
 
     public String getQuery(int i) {
@@ -500,7 +605,7 @@ public class QueryGenerator {
 
         }
 
-        queryGen.generateQueries(TranslationType.reordering);
+        queryGen.generateQueries(TranslationType.bucketElim);
 
         for (int i = amount; i < 2 * amount; i++) {
 

@@ -382,7 +382,6 @@ public class Graph {
     }
 	
 	public Graph earlyProject() {
-		// TODO: create permutated edges
 		Edge[] permutated = new Edge[edges.length];
 		int[] min_oc = new int[vertices.length];
 		int[] max_oc = new int[vertices.length];
@@ -448,6 +447,47 @@ public class Graph {
 		}
 		
 		return new Graph(vertices.clone(), permutated, min_oc, max_oc);
+	}
+	
+	public Graph MCSorder() {
+		String[] permutated = new String[vertices.length];
+		int[] perm_min = new int[vertices.length];
+		int[] perm_max = new int[vertices.length];
+		int[] label = new int[vertices.length];
+		
+		for (int i = 0; i < vertices.length; i++) {
+            perm_min[i] = min_occur[i];
+			perm_max[i] = max_occur[i];
+			label[i] = 0;
+        }
+		
+		for(int i = 0; i < vertices.length; i++) {
+			// pick not ordered vertex, with highest label
+			int max = -1;
+			int maxindex = 0;
+			for(int j = 0; j < vertices.length; j++) {
+				if(label[j] > max) {
+					max = label[j];
+					maxindex = j;
+				}
+			}
+			// set this vertex in the ordering
+			permutated[i] = vertices[maxindex];
+			perm_max[i] = max_occur[maxindex];
+			perm_min[i] = min_occur[maxindex];
+			label[maxindex] = -vertices.length; // make sure the label cannot get positive anymore
+			// update labels of adjacent vertices
+			for(Edge e : edges) {
+				// this only works on graphs made by constructor!!
+				if(maxindex == e.getVertex1()) {
+					label[e.getVertex2()]++;
+				} else if(maxindex == e.getVertex2()) {
+					label[e.getVertex1()]++;
+				}
+			}
+		}
+		
+		return new Graph(permutated, edges.clone(), perm_min, perm_max);
 	}
     
     /**
