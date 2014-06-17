@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.1.24)  8 JUN 2014 12:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.1.24)  17 JUN 2014 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -334,36 +334,44 @@ File: babel.def 2013/12/03 3.9h Babel common definitions
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-No file report.aux.
+(a:/TexLive/2013/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip59
+\enit@outerparindent=\dimen126
+\enit@toks=\toks24
+\enit@inbox=\box30
+\enitdp@description=\count123
+) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+
 (a:/TexLive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count123
-\scratchdimen=\dimen126
-\scratchbox=\box30
-\nofMPsegments=\count124
-\nofMParguments=\count125
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count126
-\MPscratchDim=\dimen127
-\MPnumerator=\count127
-\makeMPintoPDFobject=\count128
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count124
+\scratchdimen=\dimen127
+\scratchbox=\box31
+\nofMPsegments=\count125
+\nofMParguments=\count126
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count127
+\MPscratchDim=\dimen128
+\MPnumerator=\count128
+\makeMPintoPDFobject=\count129
+\everyMPtoPDFconversion=\toks26
 ) (a:/TexLive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -379,8 +387,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring OFF on input line 48.
+\AtBeginShipoutBox=\box32
+Package hyperref Info: Link coloring OFF on input line 49.
 
 (a:/TexLive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -388,22 +396,24 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (a:/TexLive/2013/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count129
+\c@section@level=\count130
 )
-LaTeX Info: Redefining \ref on input line 48.
-LaTeX Info: Redefining \pageref on input line 48.
-LaTeX Info: Redefining \nameref on input line 48.
+LaTeX Info: Redefining \ref on input line 49.
+LaTeX Info: Redefining \pageref on input line 49.
+LaTeX Info: Redefining \nameref on input line 49.
+
+(./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 50.
+LaTeX Font Info:    Try loading font information for U+msa on input line 51.
 
 (a:/TexLive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 50.
+LaTeX Font Info:    Try loading font information for U+msb on input line 51.
 
 (a:/TexLive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -413,45 +423,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--2
  []
 
 
-LaTeX Warning: Citation `paper' on page 1 undefined on input line 3.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 5--57
+Underfull \hbox (badness 10000) in paragraph at lines 5--58
 
  []
 
 [1
 
 {a:/TexLive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `sec:ProblemDescription' on page 2 undefined on input 
-line 58.
-
-
-LaTeX Warning: Reference `sec:ClaimedResults' on page 2 undefined on input line
- 58.
-
-
-LaTeX Warning: Reference `sec:Methodology' on page 2 undefined on input line 58
-.
-
-
-LaTeX Warning: Reference `sec:Discussion' on page 2 undefined on input line 58.
-
-
 (./problem_description.tex
-
-LaTeX Warning: Citation `paper' on page 2 undefined on input line 3.
-
-
-LaTeX Warning: Citation `paper' on page 2 undefined on input line 3.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
@@ -463,9 +447,6 @@ Missing character: There is no “ in font cmr10!
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
-
-
-LaTeX Warning: Citation `paper' on page 2 undefined on input line 7.
 
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
 (a:/TexLive/2013/texmf-dist/tex/latex/base/omscmr.fd
@@ -489,72 +470,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
  []
 
 ) [3] (./claimedresults.tex [4]) (./methodology.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--2
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
  []
-
-
-LaTeX Warning: Reference `fig:process' on page 5 undefined on input line 11.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--14
-
- []
-
-[5] <figures/process.pdf, id=40, 369.7815pt x 71.39272pt>
+[5] <figures/process.pdf, id=91, 369.7815pt x 71.39272pt>
 File: figures/process.pdf Graphic file (type pdf)
 
 <use figures/process.pdf>
-Package pdftex.def Info: figures/process.pdf used on input line 19.
+Package pdftex.def Info: figures/process.pdf used on input line 17.
 (pdftex.def)             Requested size: 369.78058pt x 71.39252pt.
-) (./discussion.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--2
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
-
- []
-
+) (./discussion.tex) (./conclusion.tex) (./report.bbl
+Missing character: There is no â in font cmti10!
+Missing character: There is no € in font cmti10!
+Missing character: There is no ™ in font cmti10!
 )
-No file report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
 [6 <./figures/process.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
-
-
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  A1C983556C1F739E33C3DEE96C6F6AE8;377.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 81.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 8B9AE0FB06D96B36B34C84E97DBDEFC8;410.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
  ) 
 Here is how much of TeX's memory you used:
- 8170 strings out of 494989
- 120163 string characters out of 6180733
- 210993 words of memory out of 5000000
- 11249 multiletter control sequences out of 15000+600000
- 13668 words of font info for 51 fonts, out of 8000000 for 9000
+ 8510 strings out of 494989
+ 125595 string characters out of 6180733
+ 218153 words of memory out of 5000000
+ 11558 multiletter control sequences out of 15000+600000
+ 13360 words of font info for 50 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 36i,10n,43p,1481b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,43p,1512b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
 <a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><a:/Tex
 Live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><a:/TexLive/2013
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><a:/TexLive/2013/texmf-di
@@ -564,10 +517,10 @@ c/amsfonts/cm/cmssbx10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 ti10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 
-Output written on report.pdf (6 pages, 119819 bytes).
+Output written on report.pdf (6 pages, 123417 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 142 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 70 words of extra memory for PDF output out of 10000 (max. 10000000)
 
