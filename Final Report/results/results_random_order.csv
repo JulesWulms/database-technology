@@ -1,0 +1,26 @@
+Type; Number; Time;Order;Density;;Type; Number; Time;Order;Density;;Type; Number; Time;Order;Density;;Type; Number; Time;Order;Density
+naive;0;8447349363;10;0.5;;straightforward;0;2103919316;10;0.5;;earlyProjection;0;2741937305;10;0.5;;reordering;0;4983555;10;0.5
+naive;1;1003541528;11;0.5;;straightforward;1;1566580383;11;0.5;;earlyProjection;1;1557855462;11;0.5;;reordering;1;5478874149;11;0.5
+naive;2;3184869721;12;0.5;;straightforward;2;482101733;12;0.5;;earlyProjection;2;486331521;12;0.5;;reordering;2;2358573307;12;0.5
+naive;3;4166761504;13;0.5;;straightforward;3;2305707890;13;0.5;;earlyProjection;3;2358259061;13;0.5;;reordering;3;3226305772;13;0.5
+naive;4;682099922;14;0.5;;straightforward;4;5357916138;14;0.5;;earlyProjection;4;5447470715;14;0.5;;reordering;4;5900062034;14;0.5
+naive;5;906819976;15;0.5;;straightforward;5;1342947962;15;0.5;;earlyProjection;5;1407609817;15;0.5;;reordering;5;899348717;15;0.5
+naive;6;12239398134;16;0.5;;straightforward;6;3661574338;16;0.5;;earlyProjection;6;2393936357;16;0.5;;reordering;6;2974934004;16;0.5
+naive;7;2861231414;17;0.5;;straightforward;7;2490142618;17;0.5;;earlyProjection;7;2471687252;17;0.5;;reordering;7;1841039395;17;0.5
+naive;8;2817861892;18;0.5;;straightforward;8;1846112304;18;0.5;;earlyProjection;8;1898486277;18;0.5;;reordering;8;1668208513;18;0.5
+naive;9;3439289159;19;0.5;;straightforward;9;17857469824;19;0.5;;earlyProjection;9;17870984199;19;0.5;;reordering;9;18429075118;19;0.5
+naive;10;4603818945;20;0.5;;straightforward;10;5822361249;20;0.5;;earlyProjection;10;5784140103;20;0.5;;reordering;10;4723163769;20;0.5
+naive;11;6579073534;21;0.5;;straightforward;11;6844556169;21;0.5;;earlyProjection;11;6666966624;21;0.5;;reordering;11;4821030611;21;0.5
+naive;12;8823226104;22;0.5;;straightforward;12;29732288967;22;0.5;;earlyProjection;12;29688378193;22;0.5;;reordering;12;10769140232;22;0.5
+naive;13;10515153372;23;0.5;;straightforward;13;19106791902;23;0.5;;earlyProjection;13;19072529466;23;0.5;;reordering;13;16578645483;23;0.5
+naive;14;13130143282;24;0.5;;straightforward;14;98530912445;24;0.5;;earlyProjection;14;98249897440;24;0.5;;reordering;14;61914219087;24;0.5
+naive;15;16979094966;25;0.5;;straightforward;15;84048387491;25;0.5;;earlyProjection;15;85199873215;25;0.5;;reordering;15;46411508153;25;0.5
+naive;16;20363691194;26;0.5;;straightforward;16;1.06707E+11;26;0.5;;earlyProjection;16;94136558301;26;0.5;;reordering;16;59387994367;26;0.5
+naive;17;25119961844;27;0.5;;straightforward;17;1.03324E+11;27;0.5;;earlyProjection;17;87702587470;27;0.5;;reordering;17;54213946047;27;0.5
+naive;18;30684563173;28;0.5;;straightforward;18;42607117468;28;0.5;;earlyProjection;18;43056557274;28;0.5;;reordering;18;56620963898;28;0.5
+naive;19;34349897590;29;0.5;;straightforward;19;1.59998E+11;29;0.5;;earlyProjection;19;1.60183E+11;29;0.5;;reordering;19;2.42783E+11;29;0.5
+naive;20;33502896886;30;0.5;;straightforward;20;29292444973;30;0.5;;earlyProjection;20;31397223711;30;0.5;;reordering;20;38610290111;30;0.5
+naive;21;34677359069;31;0.5;;straightforward;21;1.59019E+11;31;0.5;;earlyProjection;21;2.24644E+11;31;0.5;;reordering;21;1.70639E+11;31;0.5
+naive;22;30220594712;32;0.5;;straightforward;22;80181542219;32;0.5;;earlyProjection;22;1.10628E+11;32;0.5;;reordering;22;36877341258;32;0.5
+naive;23;29793213381;33;0.5;;straightforward;23;66105801771;33;0.5;;earlyProjection;23;95992403768;33;0.5;;reordering;23;1.57962E+11;33;0.5
+naive;24;29341114712;34;0.5;;straightforward;24;1.84653E+11;34;0.5;;earlyProjection;24;2.01986E+11;34;0.5;;reordering;24;91652478118;34;0.5
