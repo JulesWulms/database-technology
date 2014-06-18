@@ -6,7 +6,7 @@ package generators;
 
 import graph.Edge;
 import graph.Graph;
-import graph.Graph.GraphType;
+import graph.GraphType;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,11 +31,6 @@ public class QueryGenerator {
 
     private Query[] queries;
     private GraphGenerator graphGen;
-
-    public enum TranslationType {
-
-        naive, straightforward, earlyProjection, reordering, bucketElim
-    }
 
     public QueryGenerator(int n, int order) {
         queries = new Query[n];
@@ -79,9 +74,9 @@ public class QueryGenerator {
             case reordering:
                 generateReorderQuery(index, graph);
                 break;
-            case bucketElim:
+            /*case bucketElim:
                 generateBucketElimQuery(index, graph);
-                break;
+                break;*/
         }
     }
 
@@ -605,7 +600,7 @@ public class QueryGenerator {
 
         }
 
-        queryGen.generateQueries(TranslationType.bucketElim);
+        /*queryGen.generateQueries(TranslationType.bucketElim);
 
         for (int i = amount; i < 2 * amount; i++) {
 
@@ -624,6 +619,6 @@ public class QueryGenerator {
                 Logger.getLogger(QueryGenerator.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }
+        }*/
     }
 }

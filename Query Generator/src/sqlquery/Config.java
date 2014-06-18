@@ -19,7 +19,7 @@ public class Config {
     public static final String NEWLINE = System.getProperty("line.separator");
 
     /**
-     * The directory in which the fiels will be written
+     * The directory in which the files will be written
      */
     public static final String DIRECTORY = "temp/2ID35/";
     

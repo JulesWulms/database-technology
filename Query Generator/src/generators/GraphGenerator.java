@@ -5,7 +5,7 @@
 package generators;
 
 import graph.Graph;
-import graph.Graph.GraphType;
+import graph.GraphType;
 
 /**
  *
