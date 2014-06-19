@@ -4,10 +4,10 @@ In order to verify the paper we are looking into, we need a precise overview of 
 We first look at the results for the 3-COLOUR graphs where order is fixed and the density scales:
 \begin{enumerate}
 	\item \label{claim:Curve} The curves for Boolean and non-Boolean queries have roughly the same shape.
-	\item \label{claim:RunINc} At first the running time increases as density increases, because of an increased number of joins.
-	\item \label{claim:SizzeInter} Eventually the size of intermediate results becomes small or empty, and additional joins have little effect on overall running time.
+	\item \label{claim:RunInc} At first the running time increases as density increases, because of an increased number of joins.
+	\item \label{claim:SizeInter} Eventually the size of intermediate results becomes small or empty, and additional joins have little effect on overall running time.
 	\item \label{claim:IncImprov} At low density each optimization method improves upon the previous. For denser instances, optimizations using early projection lose their effectiveness.
-	\item \label{claim:BucektDominates} Bucket elimination completely dominates the greedy methods.
+	\item \label{claim:BucketDominates} Bucket elimination completely dominates the greedy methods.
 \end{enumerate}
 
 \noindent Proceeding with the results for 3-COLOUR graphs where density is fixed and the order scales. The density is fixed at 2 values, and the authors assume that the lower value is most likely associated with 3-colourable graphs, and the higher density with non-3-colourable graphs:

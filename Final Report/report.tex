@@ -2,6 +2,7 @@
 \usepackage{a4wide,graphicx,fancyhdr,amsmath,amssymb,algpseudocode,algorithm,enumerate,hyperref,float,caption,subcaption}
 \usepackage[english]{babel}
 \usepackage{enumitem}
+\usepackage{rotating, graphicx}
 \numberwithin{equation}{section}
 
 %----------------------- Macros and Definitions --------------------------
@@ -54,9 +55,9 @@ This report contains the final deliverable of the project for the course 2ID35 D
 \end{abstract}
 
 \section{Introduction} \label{sec:Introduction}
-\input{introduction.tex}
+\input{introduction.tex} %TODO check
 
-We start by presenting the problem description found in the paper in Section~\ref{sec:ProblemDescription}. Then the results claimed in the paper are discussed, Section~\ref{sec:ClaimedResults}. To verify the results we present our methodology in Section~\ref{sec:Methodology}. Section~\ref{sec:Discussion} discusses the results.Section~\ref{sec:Conclusion} concludes this report and presents our conclusion. 
+We start by presenting the problem description found in the paper in Section~\ref{sec:ProblemDescription}. Then the results claimed in the paper are discussed, Section~\ref{sec:ClaimedResults}. To verify the results we present our methodology in Section~\ref{sec:Methodology}. Section~\ref{sec:Results} presents the results of out experiments and Section~\ref{sec:Discussion} discusses the them. Section~\ref{sec:Conclusion} concludes this report and presents our conclusion. 
 
 \section{Problem Description} \label{sec:ProblemDescription}
 \input{problem_description.tex}
@@ -65,13 +66,16 @@ We start by presenting the problem description found in the paper in Section~\re
 \input {claimedresults.tex}
 
 \section{Methodology} \label{sec:Methodology}
-\input{methodology.tex}
+\input{methodology.tex} %TODO add for each step an detailed description
+
+\section{Results} \label{sec:Results}
+\input{results.tex}
 
 \section{Discussion} \label{sec:Discussion}
 \input{discussion.tex}
 
 \section{Conclusion} \label{sec:Conclusion}
-\input{conclusion.tex}
+\input{conclusion.tex} %TODO fix conclusion
 
 %\nocite{*}
 %\bibliographystyle{plain}

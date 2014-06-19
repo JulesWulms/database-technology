@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.1.24)  17 JUN 2014 22:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.1.24)  19 JUN 2014 18:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -341,37 +341,45 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@toks=\toks24
 \enit@inbox=\box30
 \enitdp@description=\count123
+)
+(a:/TexLive/2013/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+\c@r@tfl@t=\count124
+\rotFPtop=\skip60
+\rotFPbot=\skip61
+\rot@float@box=\box31
+\rot@mess@toks=\toks25
 ) (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 (a:/TexLive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count124
+\scratchcounter=\count125
 \scratchdimen=\dimen127
-\scratchbox=\box31
-\nofMPsegments=\count125
-\nofMParguments=\count126
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count127
+\scratchbox=\box32
+\nofMPsegments=\count126
+\nofMParguments=\count127
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count128
 \MPscratchDim=\dimen128
-\MPnumerator=\count128
-\makeMPintoPDFobject=\count129
-\everyMPtoPDFconversion=\toks26
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
+\everyMPtoPDFconversion=\toks27
 ) (a:/TexLive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -387,8 +395,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 49.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring OFF on input line 50.
 
 (a:/TexLive/2013/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -396,24 +404,25 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (a:/TexLive/2013/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count130
+\c@section@level=\count131
 )
-LaTeX Info: Redefining \ref on input line 49.
-LaTeX Info: Redefining \pageref on input line 49.
-LaTeX Info: Redefining \nameref on input line 49.
+LaTeX Info: Redefining \ref on input line 50.
+LaTeX Info: Redefining \pageref on input line 50.
+LaTeX Info: Redefining \nameref on input line 50.
 
 (./report.out) (./report.out)
 \@outlinefile=\write3
 \openout3 = `report.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 51.
+LaTeX Font Info:    Try loading font information for U+msa on input line 52.
 
 (a:/TexLive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 51.
+LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 
 (a:/TexLive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -428,7 +437,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3--4
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 5--58
+Underfull \hbox (badness 10000) in paragraph at lines 5--59
 
  []
 
@@ -479,35 +488,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-[5] <figures/process.pdf, id=91, 369.7815pt x 71.39272pt>
+[5] <figures/process.pdf, id=116, 369.7815pt x 71.39272pt>
 File: figures/process.pdf Graphic file (type pdf)
 
 <use figures/process.pdf>
-Package pdftex.def Info: figures/process.pdf used on input line 17.
+Package pdftex.def Info: figures/process.pdf used on input line 16.
 (pdftex.def)             Requested size: 369.78058pt x 71.39252pt.
-) (./discussion.tex) (./conclusion.tex) (./report.bbl
+) (./results.tex
+<figures/results_random_order.pdf, id=124, 495.99503pt x 234.0745pt>
+File: figures/results_random_order.pdf Graphic file (type pdf)
+
+<use figures/results_random_order.pdf>
+Package pdftex.def Info: figures/results_random_order.pdf used on input line 12
+.
+(pdftex.def)             Requested size: 398.38567pt x 188.01703pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/results_random_density2.pdf, id=125, 496.65549pt x 235.88126pt>
+File: figures/results_random_density2.pdf Graphic file (type pdf)
+
+<use figures/results_random_density2.pdf>
+Package pdftex.def Info: figures/results_random_density2.pdf used on input line
+ 18.
+(pdftex.def)             Requested size: 398.38567pt x 189.21994pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/results_random_density3.pdf, id=126, 496.14659pt x 233.77338pt>
+File: figures/results_random_density3.pdf Graphic file (type pdf)
+
+<use figures/results_random_density3.pdf>
+Package pdftex.def Info: figures/results_random_density3.pdf used on input line
+ 24.
+(pdftex.def)             Requested size: 398.38567pt x 187.7181pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6 <./figures/process.pdf>]) (./discussion.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7 <./figures/results_random_order.pdf> <./figures/results_random_density2.pdf
+
+
+pdfTeX warning: pdflatex.exe (file ./figures/results_random_density2.pdf): PDF 
+inclusion: multiple pdfs with page group included in a single page
+>] [8 <./figures/results_random_density3.pdf>]) (./conclusion.tex)
+(./report.bbl
 Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no ™ in font cmti10!
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
-[6 <./figures/process.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
+ [9])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 85.
+ [10]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 81.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 85.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 8B9AE0FB06D96B36B34C84E97DBDEFC8;410.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
+(rerunfilecheck)             Checksum: D4F090806421EC536849FB5BFF69D930;792.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 85.
  ) 
 Here is how much of TeX's memory you used:
- 8510 strings out of 494989
- 125595 string characters out of 6180733
- 218153 words of memory out of 5000000
- 11558 multiletter control sequences out of 15000+600000
+ 8620 strings out of 494989
+ 127520 string characters out of 6180733
+ 219680 words of memory out of 5000000
+ 11644 multiletter control sequences out of 15000+600000
  13360 words of font info for 50 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 36i,10n,43p,1512b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,43p,1512b,471s stack positions out of 5000i,500n,10000p,200000b,80000s
 <a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><a:/Tex
 Live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><a:/TexLive/2013
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><a:/TexLive/2013/texmf-di
@@ -517,10 +569,10 @@ c/amsfonts/cm/cmssbx10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 ti10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
 
-Output written on report.pdf (6 pages, 123417 bytes).
+Output written on report.pdf (10 pages, 562908 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 70 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 302 PDF objects out of 1000 (max. 8388607)
+ 236 compressed objects within 3 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 
