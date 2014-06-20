@@ -66,8 +66,8 @@ public class GraphGenerator {
         int amount = 2;
         int order = 15;
         GraphGenerator graphGen = new GraphGenerator(amount);
-        graphGen.generateGraphs(order);
-		//graphGen.generateGraphs(GraphType.circaugladder);
+        //graphGen.generateGraphs(order);
+		graphGen.generateGraphs(GraphType.circaugladder);
 
         for (int i = 0; i < amount; i++) {
             System.out.println(graphGen.getGraph(i).toString());

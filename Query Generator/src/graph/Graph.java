@@ -50,6 +50,11 @@ public class Graph {
 				edges = new Edge[n+(n-1)]; // n-1 edges in path and n dangling edges 
 				min_occur = new int[2*n];
 				max_occur = new int[2*n];
+				// initialize so we can check for min/max
+				for (int i = 0; i < 2*n; i++) {
+					min_occur[i] = n+(n-1);
+					max_occur[i] = -1;
+				}
                 generateAugmentedGraphs();
                 break;
             case ladder:
@@ -57,6 +62,11 @@ public class Graph {
 				edges = new Edge[2*(n-1)+n]; // 2 paths of n-1 edges and connecting n pairs of vertices
 				min_occur = new int[2*n];
 				max_occur = new int[2*n];
+				// initialize so we can check for min/max
+				for (int i = 0; i < 2*n; i++) {
+					min_occur[i] = 2*(n-1)+n;
+					max_occur[i] = -1;
+				}
                 generateLadderGraphs();
                 break;
             case augladder:
@@ -64,6 +74,11 @@ public class Graph {
 				edges = new Edge[2*(n-1)+3*n]; // 2 paths of n-1 edges, n connecting edges, and 2*n dangling edges
 				min_occur = new int[4*n];
 				max_occur = new int[4*n];
+				// initialize so we can check for min/max
+				for (int i = 0; i < 4*n; i++) {
+					min_occur[i] = 2*(n-1)+3*n;
+					max_occur[i] = -1;
+				}
                 generateAugLadderGraphs();
                 break;
             case circaugladder:
@@ -71,6 +86,11 @@ public class Graph {
 				edges = new Edge[2*(n-1)+3*n+2]; // 2 circular paths of n edges, n connecting edges, 2*n dangling edges
 				min_occur = new int[4*n];
 				max_occur = new int[4*n];
+				// initialize so we can check for min/max
+				for (int i = 0; i < 4*n; i++) {
+					min_occur[i] = 2*(n-1)+3*n+2;
+					max_occur[i] = -1;
+				}
                 generateCircAugLadderGraphs();
                 break;
         }
@@ -255,6 +275,7 @@ public class Graph {
 		posVertices.remove(j);
 		j = r.nextInt(posVertices.size());
 		right = posVertices.get(j);
+		posVertices.remove(j);
 		// dangling vertices
 		j = r.nextInt(posVertices.size());
 		v3 = posVertices.get(j);
@@ -519,6 +540,16 @@ public class Graph {
         result += "\n" + "Edges:\n";
         for (int i = 0; i < edges.length; i++) {
             result += edges[i].toString() + "\n";
+        }
+		
+		result += "\n" + "min_occur:\n";
+        for (int i = 0; i < min_occur.length; i++) {
+            result += i + ": " + min_occur[i] + "\n";
+        }
+		
+		result += "\n" + "max_occur:\n";
+        for (int i = 0; i < max_occur.length; i++) {
+            result += i + ": " + max_occur[i] + "\n";
         }
 
         return result;
