@@ -2,35 +2,37 @@ In order to verify the paper we are looking into, we need a precise overview of 
 
 \subsection{Paper results}
 We first look at the results for the 3-COLOUR graphs where order is fixed and the density scales:
-\begin{itemize}
-	\item The curves for Boolean and non-Boolean queries have roughly the same shape.
-	\item At first the running time increases as density increases, because of an increased number of joins.
-	\item Eventually the size of intermediate results becomes small or empty, and additional joins have little effect on overall running time.
-	\item At low density each optimization method improves upon the previous. For denser instances, optimizations using early projection lose their effectiveness.
-	\item Bucket elimination completely dominates the greedy methods.
-\end{itemize}
+\begin{enumerate}
+	\item \label{claim:Curve} The curves for Boolean and non-Boolean queries have roughly the same shape.
+	\item \label{claim:RunInc} At first the running time increases as density increases, because of an increased number of joins.
+	\item \label{claim:SizeInter} Eventually the size of intermediate results becomes small or empty, and additional joins have little effect on overall running time.
+	\item \label{claim:IncImprov} At low density each optimization method improves upon the previous. For denser instances, optimizations using early projection lose their effectiveness.
+	\item \label{claim:BucketDominates} Bucket elimination completely dominates the greedy methods.
+\end{enumerate}
 
 \noindent Proceeding with the results for 3-COLOUR graphs where density is fixed and the order scales. The density is fixed at 2 values, and the authors assume that the lower value is most likely associated with 3-colourable graphs, and the higher density with non-3-colourable graphs:
-\begin{itemize}
-	\item All methods show exponential increase in running, when order is increased. (This is shown by a linear slope in log-scale.)
-	\item Bucket elimination maintains a lower slope in log-scale, in comparison to the other optimizations. This lower slope in log-scale translates to a strictly smaller exponent, so we have an exponential improvement.
-\end{itemize}
+
+\begin{enumerate}[resume]
+	\item \label{claim:ExpoInc} All methods show exponential increase in running, when order is increased. (This is shown by a linear slope in log-scale.)
+	\item \label{claim:BucketExpoImpr} Bucket elimination maintains a lower slope in log-scale, in comparison to the other optimizations. This lower slope in log-scale translates to a strictly smaller exponent, so we have an exponential improvement.
+\end{enumerate}
 
 \noindent The next focus of the report was order-scaling experiments with structured queries. We first look into augmented path instances:
-\begin{itemize}
-	\item Bucket elimination is again the best, but early projection is competitive for these instances, because the problem has a natural order that works well for early projection.
-	\item For non-Boolean graphs the optimizations do not scale as well as for Boolean graphs. This is due to the fact that there are {\b 20\% less vertices to exploit in the optimization}. Early projection and bucket elimination still dominate the other optimizations in this case.
-\end{itemize}
+
+\begin{enumerate}[resume]
+	\item \label{claim:AugBucketDom} Bucket elimination is again the best, but early projection is competitive for these instances, because the problem has a natural order that works well for early projection.
+	\item \label{claim:AugNonBool} For non-Boolean graphs the optimizations do not scale as well as for Boolean graphs. This is due to the fact that there are {\b 20\% less vertices to exploit in the optimization}. Early projection and bucket elimination still dominate the other optimizations in this case.
+\end{enumerate}
 
 \noindent The final claims are about the results for ladder graph instances, and augmented ladder instances:
-\begin{itemize}
-	\item For ladder instances, the heuristic for reordering is not only unable to find a better order, but actually finds a worse one.
-	\item Furthermore, ladder instances give results very similar to augmented path instances.
-	\item Augmented ladder instances shows even more differences between optimization methods.
-	\item Non-Boolean cases for augmented ladder instances struggle to reach order 20 with the faster optimizations.
-\end{itemize}
+\begin{enumerate}[resume]
+	\item \label{claim:AugLadReordering} For ladder instances, the heuristic for reordering is not only unable to find a better order, but actually finds a worse one.
+	\item \label{claim:AugLadSimilar} Furthermore, ladder instances give results very similar to augmented path instances.
+	\item \label{claim:AugLadMoreDiff} Augmented ladder instances shows even more differences between optimization methods.
+	\item \label{claim:AugLadNonBool} Non-Boolean cases for augmented ladder instances struggle to reach order 20 with the faster optimizations.
+\end{enumerate}
 
 \noindent The conclusion for all these results is that bucket elimination dominates the field at every turn with an exponential improvement. In a discussion about future research areas, the authors also claim that they found results consistent with 3-COLOUR queries, when using 3-SAT and 2-SAT to construct queries.
 
 \subsection{Verification}
-In our verification, the main claims we want to verify are the domination of bucket elimination and the exponential improvement it shows in the paper. The next step is going into the details of all the different query types (random and structured), and getting consistent results there, or finding out why we have different results. When everything works out as planned, we can further look into queries constructed from other sources than 3-COLOUR, such as 3-SAT or 2-SAT.
+In our verification, the main claims we want to verify are the domination of bucket elimination and the exponential improvement it shows in the paper. The next step is going into the details of all the different query types (random and structured), and getting consistent results there, or finding out why we have different results. We will not look further look into queries constructed from other sources than 3-COLOUR, such as 3-SAT or 2-SAT.
