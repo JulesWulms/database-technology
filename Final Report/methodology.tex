@@ -35,7 +35,7 @@ The graph generator takes a natural number \texttt{amount} as input so that it k
 For the last 4 modes, \texttt{n} scales up for each fo the \texttt{amount} graphs. Using the scaling in size of the graphs, we can precisely mimic the experiments that have been done by the authors of our paper.
 
 \subsection{Query Generator}
-For the query generator it is important that the edges have a set order during the generation process, since the ordering of the edges can affect the optimization process. For the different techniques, it is important to maintain some information about this ordering with respect to the vertices in the graph.
+The Query Generator will translate the Graphs generated in the previous step, to the optimized queries we want. For the query generator it is important that the edges have a set order during the generation process, since the ordering of the edges can affect the optimization process. For the different techniques, it is important to maintain some information about this ordering with respect to the vertices in the graph.
 
 For the Straightforward approach and further, we need to maintain the first edge in which a vertex has been used. We need this to perform the join in a correct way: each join statement requires us to refer to the attributes that should join, and we can always refer to first time we introduced an attribute to keep the query consistent.
 
@@ -108,3 +108,6 @@ So, as mentioned above, we process these buckets in descending order according t
 When we reach the final bucket we will not execute the $2^{nd}$ and the $3^{rd}$ step, but we will change the SELECT section, with SELECTing only one vertex in Boolean case or SELECTing the free vertices in non-Boolean case.
 
 The result can be empty, and in that case the result of the whole query is empty. If it is not empty, we place the resulting relation in the highest bucket, which has an attribute in the joined relation that is iconic for the bucket. If this process terminates with there still being a relation in the last bucket, we have found the non-empty result of our query.
+
+\subsection{Connection with PostgreSQL}
+We use a Java library to send the generated queries directly to the PostgreSQL database. However, we need tables in the database that have the correct format. Therefore, we made a Table generator, which generates the CREATE statements for the required tables. If we choose to have a maximum order, we can number the vertices from 0 to $order - 1$, and generate a table with the 6  colour-combination entries, for each couple of vertices.
