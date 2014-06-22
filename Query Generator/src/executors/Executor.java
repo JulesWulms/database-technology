@@ -24,7 +24,7 @@ public class Executor {
     /**
      * The number of runs
      */
-    int amount = 10;
+    int amount = 8;
     /**
      * the fixed order value
      */

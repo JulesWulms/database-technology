@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.1.24)  22 JUN 2014 15:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/W32TeX) (format=pdflatex 2014.1.24)  22 JUN 2014 17:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -554,36 +554,68 @@ Package pdftex.def Info: figures/results_random_density3.pdf used on input line
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [8] (./discussion.tex [9 <./figures/results_random_order.pdf> <./figures/resu
-lts_random_density2.pdf
+[8] <figures/results_augmented.pdf, id=178, 597.432pt x 844.95674pt>
+File: figures/results_augmented.pdf Graphic file (type pdf)
+
+<use figures/results_augmented.pdf>
+Package pdftex.def Info: figures/results_augmented.pdf used on input line 38.
+(pdftex.def)             Requested size: 398.38567pt x 563.46213pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<figures/results_ladder.pdf, id=179, 597.432pt x 844.95674pt>
+File: figures/results_ladder.pdf Graphic file (type pdf)
+
+<use figures/results_ladder.pdf>
+Package pdftex.def Info: figures/results_ladder.pdf used on input line 45.
+(pdftex.def)             Requested size: 398.38567pt x 563.46213pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./discussion.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./figures/results_random_order.pdf> <./figures/results_random_density2.pdf
+
 
 pdfTeX warning: pdflatex.exe (file ./figures/results_random_density2.pdf): PDF 
 inclusion: multiple pdfs with page group included in a single page
->]
-Underfull \vbox (badness 3815) has occurred while \output is active []
+>] [10 <./figures/results_random_density3.pdf>]
 
- [10 <./figures/results_random_density3.pdf>]) (./conclusion.tex) [11] (./repor
-t.bbl
+LaTeX Warning: Reference `ResultsAugmented' on page 11 undefined on input line 
+10.
+
+
+LaTeX Warning: Reference `ResultsLadder' on page 11 undefined on input line 10.
+
+
+[11]) (./conclusion.tex) (./report.bbl
 Missing character: There is no â in font cmti10!
 Missing character: There is no € in font cmti10!
 Missing character: There is no ™ in font cmti10!
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
-
-[12]
+ [12] [13 <./figures/results_augmented.pdf>] [14 <./figures/results_ladder.pdf>
+]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
  (./report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 86.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 8DFB2CFBFC9CC2195FEDC4EF866D8239;926.
+
+
+LaTeX Warning: There were undefined references.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 8641 strings out of 494989
- 127777 string characters out of 6180733
- 219776 words of memory out of 5000000
- 11649 multiletter control sequences out of 15000+600000
+ 8659 strings out of 494989
+ 128196 string characters out of 6180733
+ 219954 words of memory out of 5000000
+ 11661 multiletter control sequences out of 15000+600000
  13668 words of font info for 51 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  36i,11n,43p,1512b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -596,10 +628,10 @@ c/amsfonts/cm/cmr12.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmssbx10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb><a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><
 a:/TexLive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on report.pdf (12 pages, 588420 bytes).
+Output written on report.pdf (14 pages, 809061 bytes).
 PDF statistics:
- 339 PDF objects out of 1000 (max. 8388607)
- 270 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 382 PDF objects out of 1000 (max. 8388607)
+ 306 compressed objects within 4 object streams
+ 64 named destinations out of 1000 (max. 500000)
+ 159 words of extra memory for PDF output out of 10000 (max. 10000000)
 

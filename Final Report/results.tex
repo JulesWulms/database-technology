@@ -1,4 +1,4 @@
-This section presents the results from the experiments we performed. We did not perform the analysis for the different types of graphs and also did not include bucket elimination. This is due to the fact that the implementation for these are not stable. So we first start with the random graph type in Subsection~\ref{subsec:ResultsRandom}. Then we will give a brief explanation why the implementation is unstable for the otehr types of graphs in Subsection~\ref{subsec:ResultsOtherTypes} and for bucket elimination in Subsection~\ref{subsec:ResultsBucket}. 
+This section presents the results from the experiments we performed. We did not perform the analysis for all different types of graphs and also did not include bucket elimination. This is due to the fact that the implementation for these are not stable. So we first start with the random graph type in Subsection~\ref{subsec:ResultsRandom}. Then we will give the results for the experimented types and a brief explanation why the implementation is unstable for the other types in Subsection~\ref{subsec:ResultsOtherTypes}. For bucket elimination we presents also an explanation why it is unstable in Subsection~\ref{subsec:ResultsBucket}. 
 
 \subsection{Random Graphs} \label{subsec:ResultsRandom}
 This subsection presents the results for the random graphs. In each graph the dots represent the measurement and the dotted line the trend line. The $y$-axis always represents the time in nanoseconds and the $x$-axis represents the variable quantity. So in case of the fixed order this is the density and in case of the fixed density this is the order. In each graph the different approaches are labelled with a colour. Blue stands for the naive approach, orange for straightforward, grey for early projection and yellow for the reordering approach.
@@ -27,7 +27,25 @@ This subsection presents the results for the random graphs. In each graph the do
 \end{figure}
 
 \subsection{Other Types of Graphs} \label{subsec:ResultsOtherTypes}
-As already mentioned before we were not able to run the experiments for the other types of graphs. This is due to the instability of the current state of the implementation. More specifically, the query generator has some issues. The graphs that are generated are generated correctly, but the query generators uses some attributes of the graph data structure and these appear not to be working properly. 
+As already mentioned before we were not able to run the experiments for all the other types of graphs. This is due to the instability of the current state of the implementation. More specifically, the query generator has some issues. The graphs that are generated are generated correctly, but the query generators uses some attributes of the graph data structure and these appear not to be working properly. 
+
+For the types we do have run the experiments, we will present them below. The two types of graphs that were able to run are the augmented and the ladder type. The results are presented in Figure~\ref{fig:ResultsAugmented} and Figure~\ref{fig:ResultsLadder}, respectively. 
+
+In these graphs the density is not important, due to the structure of the graph, the order ranges, from 5 till 12. After that the Java heap space runs out of memory. 
+
+\begin{figure}[h]
+\center
+	\includegraphics[width=0.9\textwidth]{figures/results_augmented}%[1cm]
+	\caption{Graph presenting the results for the augmented graph type}
+	\label{fig:ResultsAugmented}
+\end{figure}
+
+\begin{figure}[h]
+\center
+	\includegraphics[width=0.9\textwidth]{figures/results_ladder}%[1cm]
+	\caption{Graph presenting the results for the ladder graph type}
+	\label{fig:ResultsLadder}
+\end{figure}
 
 \subsection{Bucket Elimination} \label{subsec:ResultsBucket}
 Bucket elimination was also not possible to include in the experiments. We tried to focus on the bucket elimination approach as the authors of out paper \cite{paper} claim that it is better than all the other approaches used. Unfortunately we did not had enough time to fix all the bugs that popped up in the last two weeks. 

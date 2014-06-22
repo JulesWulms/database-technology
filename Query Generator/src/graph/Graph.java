@@ -64,7 +64,7 @@ public class Graph {
 				}
                 generateLadderGraphs();
                 break;
-            /*case augladder:
+            case augladder:
 				vertices = new String[4*n]; // each vertex has a counterpart and all of these have another dangling one
 				edges = new Edge[2*(n-1)+3*n]; // 2 paths of n-1 edges, n connecting edges, and 2*n dangling edges
 				min_occur = new int[4*n];
@@ -87,7 +87,7 @@ public class Graph {
 					max_occur[i] = -1;
 				}
                 generateCircAugLadderGraphs();
-                break;*/
+                break;
         }
     }
 
