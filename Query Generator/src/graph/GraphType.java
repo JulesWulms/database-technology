@@ -6,5 +6,5 @@ package graph;
  */
 public enum GraphType {
 
-        augmented, ladder, augladder, circaugladder
+        augmented, ladder, /*augladder, circaugladder*/
 }

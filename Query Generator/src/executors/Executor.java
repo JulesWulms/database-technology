@@ -24,7 +24,7 @@ public class Executor {
     /**
      * The number of runs
      */
-    int amount = 18;
+    int amount = 10;
     /**
      * the fixed order value
      */
@@ -229,7 +229,7 @@ public class Executor {
         String dir = "";
         String rf = "";
 
-        System.err.println("Experiment fixed order");
+        /*System.err.println("Experiment fixed order");
         dir = Config.DIRECTORY + "random_order_" + starttime;
         rf = "/" + dir + "/results_random_order.csv";
         queryGen = new QueryGenerator(amount, order1);
@@ -245,15 +245,15 @@ public class Executor {
         dir = Config.DIRECTORY + "random_density3_" + starttime;
         rf = "/" + dir + "/results_random_density3.csv";
         queryGen = new QueryGenerator(amount, density3);
-        this.runResults(queryGen, rf, dir);
+        this.runResults(queryGen, rf, dir);*/
 
-        /*for (GraphType t : GraphType.values()) {
+        for (GraphType t : GraphType.values()) {
             System.err.println("Experiment fixed type " + t);
             dir = Config.DIRECTORY + "random_" + t + "_" + starttime;
             rf = "/" + dir + "/results_" + t + ".csv";
             queryGen = new QueryGenerator(amount, t);
             this.runResults(t, queryGen, rf, dir);
-        }*/
+        }
     }
 
     public static void main(String args[]) {
